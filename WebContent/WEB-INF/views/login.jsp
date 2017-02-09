@@ -18,20 +18,18 @@
 		
 		<div class="container">
 	        <div class="card card-container">
-	            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-	            <img id="profile-img" class="profile-img-card" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+	            <img id="profile-img" class="profile-img-card" src="img/avatar.png" />
 	            <p id="profile-name" class="profile-name-card"></p>
 				<h1>Se connecter</h1>
 	            
 	            <form method="POST" action="login" id="formLogin" class="form-signin">
-	                <span id="reauth-email" class="reauth-email"></span>
 	                <input type="email" id="email" name="email" class="form-control" placeholder="Identifiant" required autofocus>
 	                <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" required>
-	                <div id="rememberMe" class="checkbox">
+	                <!-- <div id="rememberMe" class="checkbox">
 	                    <label>
 	                        <input type="checkbox" value="remember-me" name="remember-me" form="formLogin"> Se souvenir de moi
 	                    </label>
-	                </div>
+	                </div> -->
 	                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" form="formLogin">Connexion</button>
 	            </form>
 	            

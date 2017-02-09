@@ -61,7 +61,7 @@ public class JpaUserDao implements UserDao
 	public User findConnectable(User user)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.email = :email AND u.password = :password AND u.activated = 1" );
+		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.email = :email AND u.password = :password" );
         query.setParameter("email", user.getEmail());
         query.setParameter("password", user.getPassword());
         try

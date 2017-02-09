@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.foray.bankjee.utils.Encrypt;
+
 @Entity
 @Table(name = "User")
 public class User
@@ -48,7 +50,7 @@ public class User
     	this.email = email;
     }
     public void setPassword(String password) {
-    	this.password = password;
+    	this.password = Encrypt.encryptPassword(password);
     }
     public void setType(int type) {
     	this.type = type;

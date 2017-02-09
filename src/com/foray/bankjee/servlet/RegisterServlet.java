@@ -1,9 +1,7 @@
 package com.foray.bankjee.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,12 +65,9 @@ public class RegisterServlet extends HttpServlet
 		}
 		else
 		{
-			String concat = email + SALT + password;
-			concat = Encrypt.encryptPassword(concat);
-			
 			User user = new User();
 	    	user.setEmail( email );
-	    	user.setPassword( concat );
+	    	user.setPassword( email + SALT + password );
 	    	user.setFirstname( firstname );
 	    	user.setLastname( lastname );
 
@@ -107,7 +102,7 @@ public class RegisterServlet extends HttpServlet
 		    	accountDao.add( savingAccount );
 	    		customerDao.add( customer );
 		    	
-	    		response.sendRedirect( request.getContextPath() + REGISTER );
+	    		response.sendRedirect( request.getContextPath() + LOGIN );
 	    	}
 	    	else
 	    	{

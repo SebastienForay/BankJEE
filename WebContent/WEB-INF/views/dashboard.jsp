@@ -13,9 +13,6 @@
 	</head>
 	<body>
 		<h1>DashBoard</h1>   
-	    <p>Bonjour <%= (String) request.getSession().getAttribute("firstname") %> <%= (String) request.getSession().getAttribute("lastname") %> !</p>
-	    <p>Ton mail : <%= (String) request.getSession().getAttribute("email") %></p>
-	    <p>Ton userId : <%= (int) request.getSession().getAttribute("id") %></p>
 	    
 	    <a href="logout">Se déconnecter</a>
 	    
