@@ -14,8 +14,8 @@ import javax.persistence.Table;
 import com.foray.bankjee.utils.Encrypt;
 
 @Entity
-@Table(name = "Customer")
-public class Customer
+@Table(name = "user")
+public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +26,7 @@ public class Customer
     private String mail;
     private String password;
 
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="user")
     private List<Account> accounts;
     
     @ManyToOne

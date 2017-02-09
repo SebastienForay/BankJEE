@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.foray.bankjee.db.Customer;
+import com.foray.bankjee.db.User;
 import com.foray.bankjee.dao.DaoFactory;
-import com.foray.bankjee.dao.CustomerDao;
+import com.foray.bankjee.dao.UserDao;
 import com.foray.bankjee.utils.Encrypt;
 
 /**
@@ -63,17 +63,17 @@ public class RegisterServlet extends HttpServlet
 			String concat = mail + SALT + password;
 			concat = Encrypt.encryptPassword(concat);
 			
-			Customer customer = new Customer();
-			customer.setMail( mail );
-			customer.setPassword( password );
-			customer.setFirstname( firstname );
-			customer.setLastname( lastname );
+			User user = new User();
+	    	user.setMail( mail );
+	    	user.setPassword( password );
+	    	user.setFirstname( firstname );
+	    	user.setLastname( lastname );
 	    	
-	    	CustomerDao customerDao = DaoFactory.getCustomerDao();
-	    	Long ifExist = customerDao.findIfExist(mail);
+	    	UserDao userDao = DaoFactory.getUserDao();
+	    	Long ifExist = userDao.findIfExist(mail);
 	    	if(ifExist == 0)
 	    	{
-	    		customerDao.add( customer );
+	    		userDao.add( user );
 	    		response.sendRedirect( request.getContextPath() + REGISTER );
 	    	}
 	    	else
