@@ -7,19 +7,21 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<title>BankJEE - Register</title>
+		<title>Crédit Auvence - Créer un compte</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/login.css">
 	</head>
 	<body>
+	
+		<%@ include file="/WEB-INF/includes/navbar.jsp"%>
+	
 		<div class="container">
 	        <div class="card card-container">
 	            <img id="profile-img" class="profile-img-card" src="img/avatar.png" />
 				<h1>Créer un compte</h1>
 	            
 	            <form method="POST" action="register" id="formRegister" class="form-signin">
-	                <span id="reauth-email" class="reauth-email"></span>
 	                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Prénom" required autofocus>
 	                <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Nom" required>
 	                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
@@ -32,11 +34,6 @@
 	                </div>-->
 	                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" form="formRegister">Créer un compte</button>
 	            </form>
-	            
-	            <a href="login" class="forgot-password">
-	                Se connecter
-	            </a><br>
-	            
 	        </div>
 	    </div>
 	    
