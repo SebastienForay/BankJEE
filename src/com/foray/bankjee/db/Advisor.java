@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import com.foray.bankjee.utils.Encrypt;
 
 @Entity
-@Table(name = "advisor")
+@Table(name = "Advisor")
 public class Advisor
 {
     @Id
@@ -25,7 +25,7 @@ public class Advisor
     private String password;
     
     @OneToMany(mappedBy="advisor")
-    private List<User> users;
+    private List<Customer> customers;
 
     // getter
     public Long getId() {
@@ -70,11 +70,11 @@ public class Advisor
     }   
     
     
-    public List<User> getUser() {
-        return this.users;
+    public List<Customer> getUser() {
+        return this.customers;
     }
     
-    public void setUSer( User user ) {
-    	this.users.add(user);
+    public void setUSer( Customer user ) {
+    	this.customers.add(user);
     }
 }

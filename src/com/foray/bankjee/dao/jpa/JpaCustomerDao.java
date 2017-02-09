@@ -5,20 +5,20 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import com.foray.bankjee.db.User;
-import com.foray.bankjee.dao.UserDao;
+import com.foray.bankjee.db.Customer;
+import com.foray.bankjee.dao.CustomerDao;
 
-public class JpaUserDao implements UserDao
+public class JpaCustomerDao implements CustomerDao
 {
 	private EntityManagerFactory emf;
 	
-	public JpaUserDao(EntityManagerFactory emf)
+	public JpaCustomerDao(EntityManagerFactory emf)
 	{
         this.emf = emf;
     }
 	
 	@Override
-    public User add( User user )
+    public Customer add( Customer customer )
 	{
         
         EntityManager em = emf.createEntityManager();
@@ -28,7 +28,7 @@ public class JpaUserDao implements UserDao
         {
             t.begin();
             
-            em.persist( user );
+            em.persist( customer );
 
             t.commit();
             
@@ -39,7 +39,7 @@ public class JpaUserDao implements UserDao
             em.close();
         }
         
-        return user;
+        return customer;
     }
 	
 	@Override
@@ -48,7 +48,7 @@ public class JpaUserDao implements UserDao
         
         EntityManager em = emf.createEntityManager();
         
-        Query query = em.createQuery( "SELECT COUNT(u) FROM User AS u WHERE u.mail = :mail" );
+        Query query = em.createQuery( "SELECT COUNT(c) FROM Customer AS c WHERE c.mail = :mail" );
         query.setParameter("mail", mail);
         Long number = (Long) query.getSingleResult();
         
@@ -58,17 +58,17 @@ public class JpaUserDao implements UserDao
     }
 	
 	@Override
-	public User findConnectable(User user)
+	public Customer findConnectable(Customer user)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.mail = :mail AND u.password = :password AND u.activated = 1" );
+		Query query = em.createQuery( "SELECT c FROM Customer AS c WHERE c.mail = :mail AND c.password = :password" );
         query.setParameter("mail", user.getMail());
         query.setParameter("password", user.getPassword());
         try
         {
-        	User account = (User) query.getSingleResult();
+        	Customer customer = (Customer) query.getSingleResult();
         	em.close();
-        	return account;
+        	return customer;
         }
 		catch (Exception e)
         {
@@ -78,7 +78,7 @@ public class JpaUserDao implements UserDao
 	}
 	
 	@Override
-	public void update(User user)
+	public void update(Customer customer)
 	{
 		EntityManager em = emf.createEntityManager();
         EntityTransaction t = em.getTransaction();
@@ -86,7 +86,7 @@ public class JpaUserDao implements UserDao
         try
         {
             t.begin();
-            em.merge( user );
+            em.merge( customer );
             t.commit();
             
         } 

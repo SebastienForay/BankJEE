@@ -1,5 +1,7 @@
 package com.foray.bankjee.db;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "account")
+@Table(name = "Account")
 public class Account
 {
     @Id
@@ -18,10 +20,11 @@ public class Account
     private String label;
     private Double balance;
     private Double interest;
+    private Date creationDate;
     
     @ManyToOne
-    @JoinColumn(name="user_fk")
-    private User user;
+    @JoinColumn(name="customer_fk")
+    private Customer customer;
 
     // getter
     public Long getId() {
@@ -38,6 +41,14 @@ public class Account
     
     public Double getInterest() {
         return this.interest;
+    }
+    
+    public Date getCreationDate() {
+        return this.creationDate;
+    }
+    
+    public Customer getCustomer() {
+        return this.customer;
     }
     
     
@@ -58,11 +69,11 @@ public class Account
         this.interest = interests;
     }
     
-    public User getUSer() {
-        return this.user;
+    public void setCreationDate(Date date) {
+        this.creationDate = date;
     }
     
-    public void setUser( User user ) {
-        this.user = user;
+    public void setUser( Customer custmr ) {
+        this.customer = custmr;
     }
 }
