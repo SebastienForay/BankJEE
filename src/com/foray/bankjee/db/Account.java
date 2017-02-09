@@ -1,68 +1,55 @@
 package com.foray.bankjee.db;
 
+import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name = "account")
+@Table(name = "Account")
 public class Account
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JoinColumn(name="account_fk")
     private Long id;
     private String label;
     private Double balance;
     private Double interest;
+    private Date creationDate;
     
-    @ManyToOne
-    @JoinColumn(name="user_fk")
-    private User user;
-
-    // getter
-    public Long getId() {
-        return this.id;
-    }
-    
+    // Getter
     public String getLabel() {
-        return this.label;
+    	return this.label;
     }
-    
     public Double getBalance() {
-        return this.balance;
+    	return this.balance;
     }
-    
     public Double getInterest() {
-        return this.interest;
+    	return this.interest;
+    }
+    public Date getCreationDate() {
+    	return this.creationDate;
     }
     
-    
-    //setter
-    public void setId( Long id ) {
-        this.id = id;
+    // Setter
+    public void setLabel(String label) {
+    	this.label = label;
     }
-    
-    public void setLabel(String lbl) {
-        this.label = lbl;
+    public void setBalance(Double balance) {
+    	this.balance = balance;
     }
-    
-    public void setBalance(Double bal) {
-        this.balance = bal;
+    public void setInterest(Double interest) {
+    	this.interest = interest;
     }
-    
-    public void setInterest(Double interests) {
-        this.interest = interests;
-    }
-    
-    public User getUSer() {
-        return this.user;
-    }
-    
-    public void setUser( User user ) {
-        this.user = user;
+    public void setCreationDate(Date date) {
+    	this.creationDate = date;
     }
 }

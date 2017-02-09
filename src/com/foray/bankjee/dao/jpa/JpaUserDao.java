@@ -43,13 +43,13 @@ public class JpaUserDao implements UserDao
     }
 	
 	@Override
-    public Long findIfExist(String mail)
+    public Long findIfExist(String email)
 	{
         
         EntityManager em = emf.createEntityManager();
         
-        Query query = em.createQuery( "SELECT COUNT(u) FROM User AS u WHERE u.mail = :mail" );
-        query.setParameter("mail", mail);
+        Query query = em.createQuery( "SELECT COUNT(u) FROM User AS u WHERE u.email = :email" );
+        query.setParameter("email", email);
         Long number = (Long) query.getSingleResult();
         
         em.close();
@@ -61,8 +61,8 @@ public class JpaUserDao implements UserDao
 	public User findConnectable(User user)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.mail = :mail AND u.password = :password AND u.activated = 1" );
-        query.setParameter("mail", user.getMail());
+		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.email = :email AND u.password = :password AND u.activated = 1" );
+        query.setParameter("email", user.getEmail());
         query.setParameter("password", user.getPassword());
         try
         {

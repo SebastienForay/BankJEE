@@ -1,20 +1,13 @@
 package com.foray.bankjee.db;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.foray.bankjee.utils.Encrypt;
-
 @Entity
-@Table(name = "user")
+@Table(name = "User")
 public class User
 {
     @Id
@@ -23,63 +16,41 @@ public class User
     
     private String firstname;
     private String lastname;
-    private String mail;
+    private String email;
     private String password;
+    private int type;
 
-    @OneToMany(mappedBy="user")
-    private List<Account> accounts;
-    
-    @ManyToOne
-    @JoinColumn(name="advisor_fk")
-    private Advisor advisor;
-
-    // getter
-    public Long getId() {
-        return this.id;
-    }
-
+    // Getter
     public String getFirstname() {
-        return this.firstname;
+    	return this.firstname;
     }
-    
     public String getLastname() {
-        return this.lastname;
+    	return this.lastname;
     }
-    
-    public String getMail() {
-    	return this.mail;
+    public String getEmail() {
+    	return this.email;
     }
-    
     public String getPassword() {
     	return this.password;
-    }    
-    
-    //setter
-    public void setId( Long id ) {
-        this.id = id;
+    }
+    public int getType() {
+    	return this.type;
     }
 
-    public void setFirstname( String fname ) {
-        this.firstname = fname;
+    // Setter
+    public void setFirstname(String firstname) {
+    	this.firstname = firstname;
     }
-
-    public void setLastname( String lname ) {
-        this.lastname = lname;
+    public void setLastname(String lastname) {
+    	this.lastname = lastname;
     }
-    
-    public void setMail( String mail ) {
-    	this.mail = mail;
+    public void setEmail(String email) {
+    	this.email = email;
     }
-    
-    public void setPassword( String password ) {
-    	this.password = Encrypt.encryptPassword(password);
-    }   
-    
-    public List<Account> getAccount() {
-        return this.accounts;
+    public void setPassword(String password) {
+    	this.password = password;
     }
-    
-    public void setAccount( Account account ) {
-    	this.accounts.add(account);
+    public void setType(int type) {
+    	this.type = type;
     }
 }

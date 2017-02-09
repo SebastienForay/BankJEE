@@ -1,6 +1,9 @@
 package com.foray.bankjee.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.foray.bankjee.db.Account;
+import com.foray.bankjee.db.Customer;
 import com.foray.bankjee.db.User;
+import com.foray.bankjee.dao.AccountDao;
+import com.foray.bankjee.dao.CustomerDao;
 import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.dao.UserDao;
 import com.foray.bankjee.utils.Encrypt;
@@ -22,7 +29,7 @@ public class RegisterServlet extends HttpServlet
 	private static final long serialVersionUID = 1L;
 	public static final String PARAM_FNAME = "firstname";
 	public static final String PARAM_LNAME = "lastname";
-	public static final String PARAM_MAIL = "email";
+	public static final String PARAM_EMAIL = "email";
 	public static final String PARAM_PASSWORD = "password";
 	public static final String PARAM_CONFIRM = "confirm";
 	public static final String VIEW = "/WEB-INF/views/register.jsp";
@@ -43,12 +50,12 @@ public class RegisterServlet extends HttpServlet
 	{
 		String firstname = request.getParameter( PARAM_FNAME );
 		String lastname = request.getParameter( PARAM_LNAME );
-		String mail = request.getParameter( PARAM_MAIL );
+		String email = request.getParameter( PARAM_EMAIL );
 		String password = request.getParameter( PARAM_PASSWORD );
 		String confirm = request.getParameter( PARAM_CONFIRM );
 		
 		if(password == null || password.isEmpty() ||
-			 mail == null || mail.isEmpty() ||
+			 email == null || email.isEmpty() ||
 			 firstname == null || firstname.isEmpty() ||
 			 lastname == null || lastname.isEmpty())
 		{
@@ -60,20 +67,46 @@ public class RegisterServlet extends HttpServlet
 		}
 		else
 		{
-			String concat = mail + SALT + password;
+			String concat = email + SALT + password;
 			concat = Encrypt.encryptPassword(concat);
 			
 			User user = new User();
-	    	user.setMail( mail );
-	    	user.setPassword( password );
+	    	user.setEmail( email );
+	    	user.setPassword( concat );
 	    	user.setFirstname( firstname );
 	    	user.setLastname( lastname );
-	    	
+
 	    	UserDao userDao = DaoFactory.getUserDao();
-	    	Long ifExist = userDao.findIfExist(mail);
+	    	Long ifExist = userDao.findIfExist(email);
 	    	if(ifExist == 0)
 	    	{
 	    		userDao.add( user );
+		    	CustomerDao customerDao = DaoFactory.getCustomerDao();
+		    	AccountDao accountDao = DaoFactory.getAccountDao();
+
+		    	Customer customer = new Customer();
+		    	customer.setUser(user);
+		    	customer.setShares(0);
+		    	
+		    	Account checkingAccount = new Account();
+			    	checkingAccount.setLabel("Compte courant");
+			    	checkingAccount.setInterest(0.0);
+			    	checkingAccount.setBalance(0.0);
+			    	checkingAccount.setCreationDate(new Date());
+		    	
+		    	Account savingAccount = new Account();
+			    	savingAccount.setLabel("Livret A");
+			    	savingAccount.setInterest(0.9);
+			    	savingAccount.setBalance(0.0);
+			    	savingAccount.setCreationDate(new Date());
+
+			    	customer.setCheckingAccount(checkingAccount);
+			    	customer.setSavingAccount(savingAccount);
+		    	
+		    	accountDao.add( checkingAccount );
+		    	accountDao.add( savingAccount );
+	    		customerDao.add( customer );
+		    	
 	    		response.sendRedirect( request.getContextPath() + REGISTER );
 	    	}
 	    	else

@@ -22,8 +22,6 @@
 	            <img id="profile-img" class="profile-img-card" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 	            <p id="profile-name" class="profile-name-card"></p>
 				<h1>Se connecter</h1>
-				
-				<p style="color : #FF0000;"><%= (String) request.getAttribute("errorMsg") != null ? (String) request.getAttribute("errorMsg") : "" %></p>
 	            
 	            <form method="POST" action="login" id="formLogin" class="form-signin">
 	                <span id="reauth-email" class="reauth-email"></span>
