@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.foray.bankjee.dao.AccountDao;
 import com.foray.bankjee.dao.DaoFactory;
-import com.foray.bankjee.dao.UserDao;
+import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.User;
 
 /**
@@ -28,14 +29,26 @@ public class DashboardServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         HttpSession session = request.getSession();
-        
-        if (session.getAttribute( ATT_SESSION_USER ) == null )
+    	User user = (User) session.getAttribute( ATT_SESSION_USER );
+    	
+        if (user == null )
         {
         	response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
         else
         {
+        	AccountDao accountDao = DaoFactory.getAccountDao();
+        	Account checkingAccount = accountDao.getCheckingAccountForUser(user);
+        	Account savingAccount = accountDao.getSavingAccountForUser(user);
+        	
+        	request.setAttribute("firstname", user.getFirstname());
+        	request.setAttribute("lastname", user.getLastname());
+        	request.setAttribute("email", user.getEmail());
+
+        	request.setAttribute("checkingAccount", checkingAccount);
+        	request.setAttribute("savingAccount", savingAccount);
+        	
         	request.getRequestDispatcher( VIEW ).forward( request, response );
             return;
         }

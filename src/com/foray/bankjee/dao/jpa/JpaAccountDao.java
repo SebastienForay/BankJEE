@@ -47,11 +47,11 @@ public class JpaAccountDao implements AccountDao
 	public Account getCheckingAccountForUser(User user)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery( "SELECT * FROM `account` WHERE `id` = (" +
-										"SELECT `checkingAccount_fk` FROM `customer` WHERE `user_fk` = (" +
-												"SELECT `id` FROM `user` WHERE `email` = :email" +
+		Query query = em.createQuery( "SELECT a FROM Account AS a WHERE a.id = (" +
+										"SELECT checkingAccount_fk FROM Customer WHERE User = (" +
+												"SELECT id FROM User WHERE email = :email" +
 											")" +
-									 	");"
+									 	")"
 									);
         query.setParameter("email", user.getEmail());
         
@@ -70,11 +70,11 @@ public class JpaAccountDao implements AccountDao
 	public Account getSavingAccountForUser(User user)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery( "SELECT * FROM `account` WHERE `id` = (" +
-										"SELECT `savingAccount_fk` FROM `customer` WHERE `user_fk` = (" +
-												"SELECT `id` FROM `user` WHERE `email` = :email" +
+		Query query = em.createQuery( "SELECT a FROM Account AS a WHERE a.id = (" +
+										"SELECT savingAccount_fk FROM Customer WHERE User = (" +
+												"SELECT id FROM User WHERE email = :email" +
 											")" +
-									 	");"
+									 	")"
 									);
         query.setParameter("email", user.getEmail());
         
