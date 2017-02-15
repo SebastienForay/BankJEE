@@ -1,12 +1,9 @@
 package com.foray.bankjee.dao.jpa;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.Customer;
 import com.foray.bankjee.dao.CustomerDao;
 

@@ -2,15 +2,12 @@ package com.foray.bankjee.db;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Account")
@@ -24,7 +21,6 @@ public class Account
     private Double balance;
     private Double interest;
     private Date creationDate;
-    private int type;
     
     // Getter
     public String getLabel() {
@@ -52,8 +48,5 @@ public class Account
     }
     public void setCreationDate(Date date) {
     	this.creationDate = date;
-    }
-    public void setType(int type) {
-    	this.type = type;
     }
 }
