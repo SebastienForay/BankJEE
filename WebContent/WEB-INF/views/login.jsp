@@ -23,8 +23,8 @@
 				<h1>Se connecter</h1>
 	            
 	            <form method="POST" action="login" id="formLogin" class="form-signin">
-	                <input type="email" id="email" name="email" class="form-control" placeholder="Identifiant" required autofocus>
-	                <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" required>
+	                <input type="email" id="email" name="email" class="form-control" placeholder="Identifiant" value="sebastien.foray@ynov.com" required autofocus>
+	                <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" value="azerty" required>
 	                <!-- <div id="rememberMe" class="checkbox">
 	                    <label>
 	                        <input type="checkbox" value="remember-me" name="remember-me" form="formLogin"> Se souvenir de moi

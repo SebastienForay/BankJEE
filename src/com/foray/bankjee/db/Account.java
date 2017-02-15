@@ -24,6 +24,7 @@ public class Account
     private Double balance;
     private Double interest;
     private Date creationDate;
+    private int type;
     
     // Getter
     public String getLabel() {
@@ -51,5 +52,8 @@ public class Account
     }
     public void setCreationDate(Date date) {
     	this.creationDate = date;
+    }
+    public void setType(int type) {
+    	this.type = type;
     }
 }

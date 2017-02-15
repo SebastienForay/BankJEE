@@ -1,6 +1,8 @@
 package com.foray.bankjee.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,17 +39,15 @@ public class DashboardServlet extends HttpServlet
             return;
         }
         else
-        {
+        {        	
         	AccountDao accountDao = DaoFactory.getAccountDao();
-        	Account checkingAccount = accountDao.getCheckingAccountForUser(user);
-        	Account savingAccount = accountDao.getSavingAccountForUser(user);
         	
         	request.setAttribute("firstname", user.getFirstname());
         	request.setAttribute("lastname", user.getLastname());
         	request.setAttribute("email", user.getEmail());
-
-        	request.setAttribute("checkingAccount", checkingAccount);
-        	request.setAttribute("savingAccount", savingAccount);
+        	
+        	List<Account> accounts = accountDao.findAll(user);
+        	request.setAttribute("accounts", accounts);
         	
         	request.getRequestDispatcher( VIEW ).forward( request, response );
             return;

@@ -88,12 +88,14 @@ public class RegisterServlet extends HttpServlet
 			    	checkingAccount.setInterest(0.0);
 			    	checkingAccount.setBalance(0.0);
 			    	checkingAccount.setCreationDate(new Date());
+			    	checkingAccount.setType(0);
 		    	
 		    	Account savingAccount = new Account();
 			    	savingAccount.setLabel("Livret A");
 			    	savingAccount.setInterest(0.9);
 			    	savingAccount.setBalance(0.0);
 			    	savingAccount.setCreationDate(new Date());
+			    	savingAccount.setType(1);
 
 			    	customer.setCheckingAccount(checkingAccount);
 			    	customer.setSavingAccount(savingAccount);

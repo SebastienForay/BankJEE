@@ -13,28 +13,31 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter( urlPatterns = "/auth/*" )
-public class AuthenticateFilter implements Filter {
-    
+public class AuthenticateFilter implements Filter
+{
     public static final String ATT_SESSION_USER = "user";
     
-    public void init( FilterConfig config ) throws ServletException {
+    public void init( FilterConfig config ) throws ServletException
+    {
+    
     }
 
-    public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain ) throws IOException,ServletException {
-
+    public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain ) throws IOException,ServletException
+    {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         
-        if ( session.getAttribute( ATT_SESSION_USER ) == null ) {
+        if ( session.getAttribute( ATT_SESSION_USER ) == null )
+        {
             res.sendRedirect( req.getContextPath()+"/login" );
             return;
         }
         chain.doFilter( req, res );
-        
     }
 
-    public void destroy() {
+    public void destroy()
+    {
         
     }
 }
