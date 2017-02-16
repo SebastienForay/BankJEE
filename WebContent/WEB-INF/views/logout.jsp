@@ -20,8 +20,8 @@
 			
 			<p>Vous allez être redirigé automatiquement vers la page de connexion...</p>
 		    
-		    <script src="js/jquery.js"></script>
-		    <script src="js/bootstrap.js"></script>
+		    <script src="../js/jquery.js"></script>
+		    <script src="../js/bootstrap.js"></script>
 	    </div>
 	</body>
 </html>

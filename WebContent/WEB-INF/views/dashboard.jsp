@@ -46,8 +46,8 @@
 		    
 		    <a href="logout">Se déconnecter</a>
 		    
-		    <script src="js/jquery.js"></script>
-		    <script src="js/bootstrap.js"></script>
+		    <script src="../js/jquery.js"></script>
+		    <script src="../js/bootstrap.js"></script>
 	    
 		</div>
 	</body>
