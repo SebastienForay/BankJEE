@@ -83,7 +83,7 @@ public class RegisterServlet extends HttpServlet
 		    	customer.setShares(0);
 		    	
 		    	Account checkingAccount = new Account();
-			    	checkingAccount.setLabel("Compte courant");
+			    	checkingAccount.setLabel("Compte Courant");
 			    	checkingAccount.setInterest(0.0);
 			    	checkingAccount.setBalance(0.0);
 			    	checkingAccount.setCreationDate(new Date());

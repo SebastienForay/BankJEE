@@ -49,12 +49,32 @@ public class JpaAccountDao implements AccountDao
 	public List<Account> findAll(User user)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("SELECT a FROM Account AS a WHERE a.id = ( SELECT c.checkingAccount FROM Customer AS c WHERE c.user = :user ) OR a.id = ( SELECT c.savingAccount FROM Customer AS c WHERE c.user = :user )");
+		Query query = em.createQuery("SELECT a FROM Account AS a WHERE a.id = ( SELECT c.checkingAccount FROM Customer AS c WHERE c.user = :user )"
+										+ "OR a.id = ( SELECT c.savingAccount FROM Customer AS c WHERE c.user = :user )");
         query.setParameter("user", user);
         
 		List<Account> accounts = (List<Account>) query.getResultList();
     	em.close();
     	return accounts;
+	}
+	
+	@Override
+	public Account getOne(Long id)
+	{
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("SELECT a FROM Account AS a WHERE a.id = :id");
+        query.setParameter("id", id);
+        
+        try
+        {
+        	Account account = (Account) query.getSingleResult();
+        	return account;
+        }
+        catch(Exception e)
+        {
+        	System.out.println(e.getMessage());
+        	return null;
+        }
 	}
 	
 	@Override

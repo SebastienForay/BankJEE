@@ -9,5 +9,6 @@ public interface AccountDao
 {
 	abstract Account add(Account account);
 	abstract List<Account> findAll(User user);
+	abstract Account getOne(Long id);
 	abstract void update(Account account);
 }

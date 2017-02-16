@@ -23,6 +23,9 @@ public class Account
     private Date creationDate;
     
     // Getter
+    public String getId() {
+    	return this.id.toString();
+    }
     public String getLabel() {
     	return this.label;
     }
