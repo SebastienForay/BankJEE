@@ -25,8 +25,6 @@ public class LoginServlet extends HttpServlet
     public static final String ATT_SESSION_USER = "user";
     public static final String VIEW = "/WEB-INF/views/login.jsp";
 
-	private final String SALT = "PIp94epLRRLpboRykw8YKDPT34Jg4HRt4bpJAkMR";
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -54,7 +52,7 @@ public class LoginServlet extends HttpServlet
         
         User user = new User();
         user.setEmail(email);
-        user.setPassword(email + SALT + password);
+        user.setPassword(email + password);
         
         UserDao userDao = DaoFactory.getUserDao();
         user = userDao.findConnectable(user);

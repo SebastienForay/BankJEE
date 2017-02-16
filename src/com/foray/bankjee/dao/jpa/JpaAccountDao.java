@@ -1,5 +1,7 @@
 package com.foray.bankjee.dao.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -44,49 +46,35 @@ public class JpaAccountDao implements AccountDao
     }
 	
 	@Override
-	public Account getCheckingAccountForUser(User user)
+	public List<Account> findAll(User user)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery( "SELECT * FROM `account` WHERE `id` = (" +
-										"SELECT `checkingAccount_fk` FROM `customer` WHERE `user_fk` = (" +
-												"SELECT `id` FROM `user` WHERE `email` = :email" +
-											")" +
-									 	");"
-									);
-        query.setParameter("email", user.getEmail());
+		Query query = em.createQuery("SELECT a FROM Account AS a WHERE a.id = ( SELECT c.checkingAccount FROM Customer AS c WHERE c.user = :user )"
+										+ "OR a.id = ( SELECT c.savingAccount FROM Customer AS c WHERE c.user = :user )");
+        query.setParameter("user", user);
         
-        try {
-        	Account account = (Account) query.getSingleResult();
-        	em.close();
-        	return account;
-        }
-		catch (Exception e) {
-			em.close();
-			return null;
-		}
+		List<Account> accounts = (List<Account>) query.getResultList();
+    	em.close();
+    	return accounts;
 	}
 	
 	@Override
-	public Account getSavingAccountForUser(User user)
+	public Account getOne(Long id)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery( "SELECT * FROM `account` WHERE `id` = (" +
-										"SELECT `savingAccount_fk` FROM `customer` WHERE `user_fk` = (" +
-												"SELECT `id` FROM `user` WHERE `email` = :email" +
-											")" +
-									 	");"
-									);
-        query.setParameter("email", user.getEmail());
+		Query query = em.createQuery("SELECT a FROM Account AS a WHERE a.id = :id");
+        query.setParameter("id", id);
         
-        try {
+        try
+        {
         	Account account = (Account) query.getSingleResult();
-        	em.close();
         	return account;
         }
-		catch (Exception e) {
-			em.close();
-			return null;
-		}
+        catch(Exception e)
+        {
+        	System.out.println(e.getMessage());
+        	return null;
+        }
 	}
 	
 	@Override

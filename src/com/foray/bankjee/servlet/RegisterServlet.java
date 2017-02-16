@@ -16,7 +16,6 @@ import com.foray.bankjee.dao.AccountDao;
 import com.foray.bankjee.dao.CustomerDao;
 import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.dao.UserDao;
-import com.foray.bankjee.utils.Encrypt;
 
 /**
  * Servlet implementation class Register
@@ -84,7 +83,7 @@ public class RegisterServlet extends HttpServlet
 		    	customer.setShares(0);
 		    	
 		    	Account checkingAccount = new Account();
-			    	checkingAccount.setLabel("Compte courant");
+			    	checkingAccount.setLabel("Compte Courant");
 			    	checkingAccount.setInterest(0.0);
 			    	checkingAccount.setBalance(0.0);
 			    	checkingAccount.setCreationDate(new Date());

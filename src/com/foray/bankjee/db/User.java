@@ -50,7 +50,7 @@ public class User
     	this.email = email;
     }
     public void setPassword(String password) {
-    	this.password = Encrypt.encryptPassword(password);
+    	this.password = Encrypt.encryptPassword(password + "PIp94epLRRLpboRykw8YKDPT34Jg4HRt4bpJAkMR");
     }
     public void setType(int type) {
     	this.type = type;
