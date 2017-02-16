@@ -19,23 +19,30 @@
 		<div class="container">
 	        <div class="card card-container">
 	            <img id="profile-img" class="profile-img-card" src="img/avatar.png" />
-	            <p id="profile-name" class="profile-name-card"></p>
-				<h1>Se connecter</h1>
+	            
+	            <br>
 	            
 	            <form method="POST" action="login" id="formLogin" class="form-signin">
-	                <input type="email" id="email" name="email" class="form-control" placeholder="Identifiant" value="sebastien.foray@ynov.com" required autofocus>
-	                <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" value="azerty" required>
+					<div class="input-group">
+						<span id="sizing-addon2" class="input-group-addon" id="basic-addon1">@</span>
+	                	<input type="email" id="email" name="email" class="form-control" placeholder="Identifiant" value="sebastien.foray@ynov.com" aria-describedby="sizing-addon2" required autofocus>
+					</div>
+					<br>
+					<div class="input-group">
+						<span id="sizing-addon2" class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-lock"></span></span>
+	                	<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" value="azerty" aria-describedby="sizing-addon2" required>
+					</div>
 	                <!-- <div id="rememberMe" class="checkbox">
 	                    <label>
 	                        <input type="checkbox" value="remember-me" name="remember-me" form="formLogin"> Se souvenir de moi
 	                    </label>
 	                </div> -->
+					<br>
 	                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" form="formLogin">Connexion</button>
 	            </form>
 	            
-	            <a href="#" class="forgot-password">
-	                Mot de passe oublié ?
-	            </a>
+	            <br>
+	            <a href="#" class="forgot-password">Mot de passe oublié ?</a>
 	            
 	        </div>
 	    </div>

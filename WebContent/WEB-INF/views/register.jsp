@@ -18,15 +18,32 @@
 	
 		<div class="container">
 	        <div class="card card-container">
-	            <img id="profile-img" class="profile-img-card" src="img/avatar.png" />
-				<h1>Créer un compte</h1>
-	            
 	            <form method="POST" action="register" id="formRegister" class="form-signin">
-	                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Prénom" required autofocus>
-	                <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Nom" required>
-	                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
-	                <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" required>
-	                <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Confirmation" required>
+	            	<div class="input-group">
+						<span id="sizing-addon2" class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+	                	<input type="text" id="firstname" name="firstname" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon2" required autofocus>
+					</div>
+					<br>
+	            	<div class="input-group">
+						<span id="sizing-addon2" class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+	                	<input type="text" id="lastname" name="lastname" class="form-control" placeholder="Nom" aria-describedby="sizing-addon2" required autofocus>
+					</div>
+					<br>
+	            	<div class="input-group">
+						<span id="sizing-addon2" class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+	                	<input type="email" id="email" name="email" class="form-control" placeholder="Email" aria-describedby="sizing-addon2" required autofocus>
+					</div>
+					<br>
+	            	<div class="input-group">
+						<span id="sizing-addon2" class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
+	                	<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon2" required autofocus>
+					</div>
+					<br>
+	            	<div class="input-group">
+						<span id="sizing-addon2" class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
+	                	<input type="password" id="confirm" name="confirm" class="form-control" placeholder="Confirmation" aria-describedby="sizing-addon2" required autofocus>
+					</div>
+					<br>
 	                <!-- <div id="remember" class="checkbox">
 	                    <label>
 	                        <input type="checkbox" value="remember-me"> Remember me
