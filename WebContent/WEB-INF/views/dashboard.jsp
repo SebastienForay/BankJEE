@@ -13,6 +13,9 @@
 		<link rel="stylesheet" href="../css/bootstrap.css">
 	</head>
 	<body>
+	
+		<%@ include file="/WEB-INF/includes/navbar.jsp"%>
+		
 		<div class="container">
 			
 			<h1>Mon tableau de bord</h1>
@@ -32,10 +35,10 @@
 				<tbody>
 				<c:forEach items="${accounts}" var="a">
 					<tr>
-						<th scope="row">${ a.label }</th>
-						<td>${ a.balance }</td>
-						<td>${ a.creationDate }</td>
-						<td>${ a.interest }</td>
+						<th scope="row"><a href="account?id=${ a.getId() }">${ a.getLabel() }</a></th>
+						<td>${ a.getBalance() }</td>
+						<td>${ a.getCreationDate() }</td>
+						<td>${ a.getInterest() }</td>
 					</tr>
 				</c:forEach>
 				</tbody>
