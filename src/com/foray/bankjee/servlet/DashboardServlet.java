@@ -15,9 +15,6 @@ import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.User;
 
-/**
- * Servlet implementation class Dashboard
- */
 @WebServlet("/auth/dashboard")
 public class DashboardServlet extends HttpServlet
 {
@@ -59,5 +56,4 @@ public class DashboardServlet extends HttpServlet
     {
         doGet(request, response);
     }
-
 }
