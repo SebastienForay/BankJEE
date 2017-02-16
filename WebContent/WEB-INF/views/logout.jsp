@@ -6,18 +6,22 @@
 		<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Refresh" content="3;url=login">
 		
-		<title>LOGOUT</title>
+		<title>Crédit Auvence - Déconnexion</title>
 		
-		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="../css/bootstrap.css">
 	</head>
 	<body>
-		<h1>LOGGED OUT</h1>
+		<%@ include file="/WEB-INF/includes/navbar.jsp"%>
 		
-		<a href="register">Créer un compte</a><br>
-		<a href="login">Se connecter</a>
-	    
-	    <script src="js/jquery.js"></script>
-	    <script src="js/bootstrap.js"></script>
+		<div class="container">
+			<h1>Vous êtes déconnecté</h1>
+			
+			<p>Vous allez être redirigé automatiquement vers la page de connexion...</p>
+		    
+		    <script src="js/jquery.js"></script>
+		    <script src="js/bootstrap.js"></script>
+	    </div>
 	</body>
 </html>
