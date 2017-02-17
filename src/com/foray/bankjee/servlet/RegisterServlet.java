@@ -32,10 +32,7 @@ public class RegisterServlet extends HttpServlet
 	public static final String VIEW = "/WEB-INF/views/register.jsp";
 	public static final String LOGIN = "/login";
 	public static final String REGISTER = "/register";
-	
-	private final String SALT = "PIp94epLRRLpboRykw8YKDPT34Jg4HRt4bpJAkMR";
-	
-	
+		
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
@@ -66,7 +63,7 @@ public class RegisterServlet extends HttpServlet
 		{
 			User user = new User();
 	    	user.setEmail( email );
-	    	user.setPassword( email + SALT + password );
+	    	user.setPassword( email + password );
 	    	user.setFirstname( firstname );
 	    	user.setLastname( lastname );
 
