@@ -10,7 +10,7 @@
 		
 		<title>Crédit Auvence - Tableau de bord</title>
 		
-		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../../css/bootstrap.css">
 	</head>
 	<body>
 	
@@ -46,8 +46,8 @@
 		    
 		    <a href="logout">Se déconnecter</a>
 		    
-		    <script src="../js/jquery.js"></script>
-		    <script src="../js/bootstrap.js"></script>
+		    <script src="../../js/jquery.js"></script>
+		    <script src="../../js/bootstrap.js"></script>
 	    
 		</div>
 	</body>
