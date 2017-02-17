@@ -11,7 +11,6 @@
 		<title>Crédit Auvence - Tableau de bord</title>
 		
 		<link rel="stylesheet" href="../css/bootstrap.css">
-		<link rel="stylesheet" href="../css/admin.css">
 	</head>
 	<body>
 	
@@ -19,17 +18,29 @@
 		
 		<div class="container">
 			
-			<h1>Administration</h1>
-			<br>
-			<div class="col-md-12">
-				<div class="bs-glyphicons col-md-4">
-					<ul class="bs-glyphicons-list">
-						<li><a href="#"><div class="customer"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Gérer les clients</div></a></li>
-						<li><a href="#"><div class="advisor"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Gérer les conseillers</div></a></li>
-					</ul>
-				</div>
-			</div>
-
+			<h1>Administration des utilisateurs</h1>
+			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th>Type</th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach items="${users}" var="user">
+					<tr>
+						<th scope="row">${ user.getFirstname() }</a></th>
+						<td>${ user.getLastname() }</td>
+						<td>${ user.getEmail() }</td>
+						<td>${ user.getType() }</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+		    
 		    <a href="logout">Se déconnecter</a>
 		    
 		    <script src="../js/jquery.js"></script>

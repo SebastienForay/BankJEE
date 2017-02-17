@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.foray.bankjee.dao.AccountDao;
 import com.foray.bankjee.dao.DaoFactory;
+import com.foray.bankjee.dao.UserDao;
 import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.User;
 import com.foray.bankjee.utils.UserType;
@@ -66,6 +67,10 @@ public class DashboardServlet extends HttpServlet
         	else if(UserType.Convert(user) == UserType.ADMINISTRATOR)
         	{
 
+            	UserDao userDao = DaoFactory.getUserDao();
+            	
+            	List<User> users = userDao.getAll();
+            	request.setAttribute("users", users);
             	request.getRequestDispatcher( VIEW_ADMIN ).forward( request, response );
                 return;
         	}

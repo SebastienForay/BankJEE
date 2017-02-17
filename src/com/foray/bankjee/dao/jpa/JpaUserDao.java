@@ -1,5 +1,7 @@
 package com.foray.bankjee.dao.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -69,6 +71,24 @@ public class JpaUserDao implements UserDao
         	User account = (User) query.getSingleResult();
         	em.close();
         	return account;
+        }
+		catch (Exception e)
+        {
+			em.close();
+			return null;
+		}
+	}
+	
+	@Override
+	public List<User> getAll()
+	{
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery( "SELECT u FROM User AS u" );
+        try
+        {
+    		List<User> users = (List<User>) query.getResultList();
+        	em.close();
+    		return users;
         }
 		catch (Exception e)
         {
