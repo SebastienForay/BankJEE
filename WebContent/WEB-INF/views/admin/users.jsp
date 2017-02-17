@@ -10,7 +10,7 @@
 		
 		<title>Crédit Auvence - Tableau de bord</title>
 		
-		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../../css/bootstrap.css">
 	</head>
 	<body>
 	
@@ -35,7 +35,23 @@
 						<th scope="row">${ user.getFirstname() }</a></th>
 						<td>${ user.getLastname() }</td>
 						<td>${ user.getEmail() }</td>
-						<td>${ user.getType() }</td>
+						<td>
+							<form method="POST" name="userTypeForm">
+								<select name="type" id="type" onchange="this.form.submit();">
+									<c:set var="val" value="${ user.getType() }"/>
+									<c:forEach var="i" begin="0" end="2">
+										<c:choose> 
+											<c:when test="${val == i}">
+												<option value="${i}" selected onchange="return setValue();"><c:out value="${i}"/></option>
+											</c:when>
+											<c:otherwise>
+												<option value="${i}" onchange="return setValue();"><c:out value="${i}"/></option>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</select>
+							</form>
+						</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -43,9 +59,8 @@
 		    
 		    <a href="logout">Se déconnecter</a>
 		    
-		    <script src="../js/jquery.js"></script>
-		    <script src="../js/bootstrap.js"></script>
-	    
+		    <script src="../../js/jquery.js"></script>
+		    <script src="../../js/bootstrap.js"></script>
 		</div>
 	</body>
 </html>

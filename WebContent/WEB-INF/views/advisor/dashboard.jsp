@@ -18,7 +18,7 @@
 		
 		<div class="container">
 			
-			<h1>Mon tableau de bord</h1>
+			<h1>Mes clients</h1>
 			
 		    
 		    <a href="logout">Se déconnecter</a>

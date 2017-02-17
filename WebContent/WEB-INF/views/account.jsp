@@ -35,6 +35,14 @@
 					</tr>
 				</tbody>
 			</table>
+			
+			<select>
+				<option>text1</option>
+				<option>text2</option>
+				<option>text3</option>
+				<option>text4</option>
+				<option>text5</option>
+			</select>
 		    
 		    <a href="dashboard"><- Retour</a><br>
 		    <a href="logout">Se déconnecter</a>
