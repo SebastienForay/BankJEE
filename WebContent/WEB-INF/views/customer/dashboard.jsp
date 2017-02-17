@@ -10,7 +10,7 @@
 		
 		<title>Crédit Auvence - Tableau de bord</title>
 		
-		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../../css/bootstrap.css">
 	</head>
 	<body>
 	
@@ -27,18 +27,18 @@
 				<thead>
 					<tr>
 						<th>Libelé</th>
-						<th>Solde</th>
-						<th>Date de création</th>
 						<th>Taux d'intérêts</th>
+						<th>Date de création</th>
+						<th>Solde</th>
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach items="${accounts}" var="a">
 					<tr>
 						<th scope="row"><a href="account?id=${ a.getId() }">${ a.getLabel() }</a></th>
-						<td>${ a.getBalance() }</td>
-						<td>${ a.getCreationDate() }</td>
 						<td>${ a.getInterest() }</td>
+						<td>${ a.getCreationDate() }</td>
+						<td>${ a.getBalance() }</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -46,8 +46,8 @@
 		    
 		    <a href="logout">Se déconnecter</a>
 		    
-		    <script src="js/jquery.js"></script>
-		    <script src="js/bootstrap.js"></script>
+		    <script src="../../js/jquery.js"></script>
+		    <script src="../../js/bootstrap.js"></script>
 	    
 		</div>
 	</body>

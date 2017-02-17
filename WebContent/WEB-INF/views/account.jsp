@@ -16,16 +16,31 @@
 	
 		<%@ include file="/WEB-INF/includes/navbar.jsp"%>
 	
-		<div class="container">
-			
-			<h1>Mon <c:out value="${ account.getLabel() }"/></h1>
-			
+		<div class="container">			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Libelé</th>
+						<th>Solde</th>
+						<th>Date de création</th>
+						<th>Taux d'intérêts</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">${ account.getLabel() }</a></th>
+						<td>${ account.getBalance() }</td>
+						<td>${ account.getCreationDate() }</td>
+						<td>${ account.getInterest() }</td>
+					</tr>
+				</tbody>
+			</table>
 		    
 		    <a href="dashboard"><- Retour</a><br>
 		    <a href="logout">Se déconnecter</a>
 		    
-		    <script src="js/jquery.js"></script>
-		    <script src="js/bootstrap.js"></script>
+		    <script src="../js/jquery.js"></script>
+		    <script src="../js/bootstrap.js"></script>
 	    
 		</div>
 	</body>

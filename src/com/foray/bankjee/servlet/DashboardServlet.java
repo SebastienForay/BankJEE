@@ -14,14 +14,19 @@ import com.foray.bankjee.dao.AccountDao;
 import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.User;
+import com.foray.bankjee.utils.UserType;
 
+/**
+ * Servlet implementation class Dashboard
+ */
 @WebServlet("/auth/dashboard")
 public class DashboardServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     public static final String ATT_SESSION_USER = "user";
-    public static final String VIEW = "/WEB-INF/views/dashboard.jsp";
+    public static final String VIEW_CUSTOMER = "/WEB-INF/views/customer/dashboard.jsp";
+    public static final String VIEW_ADVISOR = "/WEB-INF/views/advisor/dashboard.jsp";
     
 
     @Override
@@ -36,18 +41,31 @@ public class DashboardServlet extends HttpServlet
             return;
         }
         else
-        {        	
-        	AccountDao accountDao = DaoFactory.getAccountDao();
-        	
+        {
         	request.setAttribute("firstname", user.getFirstname());
         	request.setAttribute("lastname", user.getLastname());
         	request.setAttribute("email", user.getEmail());
         	
-        	List<Account> accounts = accountDao.findAll(user);
-        	request.setAttribute("accounts", accounts);
-        	
-        	request.getRequestDispatcher( VIEW ).forward( request, response );
-            return;
+        	if(UserType.Convert(user) == UserType.CUSTOMER)
+        	{
+            	AccountDao accountDao = DaoFactory.getAccountDao();
+            	
+            	List<Account> accounts = accountDao.findAll(user);
+            	request.setAttribute("accounts", accounts);
+            	
+            	request.getRequestDispatcher( VIEW_CUSTOMER ).forward( request, response );
+                return;
+        	}
+        	else if(UserType.Convert(user) == UserType.ADVISOR)
+        	{
+
+            	request.getRequestDispatcher( VIEW_ADVISOR ).forward( request, response );
+                return;
+        	}
+        	else if(UserType.Convert(user) == UserType.ADMINISTRATOR)
+        	{
+        		
+        	}
         }
     }
     

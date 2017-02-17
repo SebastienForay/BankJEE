@@ -59,15 +59,19 @@ public class JpaAccountDao implements AccountDao
 	}
 	
 	@Override
-	public Account getOne(Long id)
+	public Account getOne(User user, Long id)
 	{
-		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("SELECT a FROM Account AS a WHERE a.id = :id");
-        query.setParameter("id", id);
-        
         try
         {
-        	Account account = (Account) query.getSingleResult();
+        	Account account =  null;
+        	List<Account> accounts = findAll(user);
+        	for (Account acc : accounts) {
+				if(acc.getId().equals(String.valueOf(id)))
+				{
+					account = acc;
+					break;
+				}
+			}
         	return account;
         }
         catch(Exception e)
