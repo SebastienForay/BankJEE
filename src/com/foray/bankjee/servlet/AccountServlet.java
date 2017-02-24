@@ -24,7 +24,7 @@ public class AccountServlet extends HttpServlet
 
     public static final String PARAM_ID = "id";
     public static final String ATT_SESSION_USER = "user";
-    public static final String VIEW = "/WEB-INF/views/account.jsp";
+    public static final String VIEW = "/WEB-INF/views/customer/account.jsp";
     
     public AccountServlet()
     {
