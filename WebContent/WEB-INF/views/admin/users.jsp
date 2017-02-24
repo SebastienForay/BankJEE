@@ -37,15 +37,25 @@
 						<td>${ user.getEmail() }</td>
 						<td>
 							<form method="POST" name="userTypeForm">
-								<select name="type" id="type" onchange="this.form.submit();">
+								<input type="hidden" name="userId" value="${ user.getId() }">
+								<input type="hidden" name="userEmail" value="${ user.getEmail() }">
+								<c:set var="userType" value="${ user.getType() }"/>
+								<c:choose> 
+									<c:when test="${userType == 2}">
+									<select name="type" id="type" onchange="this.form.submit();">
+									</c:when>
+									<c:otherwise>
+									<select name="type" id="type" onchange="this.form.submit();">
+									</c:otherwise>
+								</c:choose> 
 									<c:set var="val" value="${ user.getType() }"/>
 									<c:forEach var="i" begin="0" end="2">
 										<c:choose> 
 											<c:when test="${val == i}">
-												<option value="${i}" selected onchange="return setValue();"><c:out value="${i}"/></option>
+											<option value="${i}" selected onchange="return setValue();"><c:out value="${i}"/></option>
 											</c:when>
 											<c:otherwise>
-												<option value="${i}" onchange="return setValue();"><c:out value="${i}"/></option>
+											<option value="${i}" onchange="return setValue();"><c:out value="${i}"/></option>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>

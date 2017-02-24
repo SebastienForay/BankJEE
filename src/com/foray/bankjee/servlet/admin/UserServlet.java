@@ -36,7 +36,7 @@ public class UserServlet extends HttpServlet
         HttpSession session = request.getSession();
     	User user = (User) session.getAttribute( ATT_SESSION_USER );
     	
-        if (user == null)
+        if (user == null || user.getType() != 2)
         {
         	response.sendRedirect(request.getContextPath() + "/login");
             return;
@@ -54,11 +54,14 @@ public class UserServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		String userId = request.getParameter("userId");
+		String userEmail = request.getParameter("userEmail");
+		
 		int type = Integer.parseInt(request.getParameter("type"));
 		HttpSession session = request.getSession();
     	User user = (User) session.getAttribute( ATT_SESSION_USER );
     	
-        if (user == null)
+        if (user == null || user.getType() != 2)
         {
         	response.sendRedirect(request.getContextPath() + "/login");
             return;
@@ -66,7 +69,10 @@ public class UserServlet extends HttpServlet
         else
         {
         	UserDao userDao = DaoFactory.getUserDao();
+        	User userToUpdate = userDao.getOne(userId, userEmail);
         	
+        	userToUpdate.setType(type);
+        	userDao.update(userToUpdate);
         	
     		doGet(request, response);
 	        return;

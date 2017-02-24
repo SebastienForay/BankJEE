@@ -11,4 +11,5 @@ public interface UserDao
 	abstract User findConnectable(User user);
 	abstract List<User> getAll();
 	abstract void update(User user);
+	abstract User getOne(String id, String email);
 }

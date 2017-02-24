@@ -109,11 +109,30 @@ public class JpaUserDao implements UserDao
             em.merge( user );
             t.commit();
             
-        } 
-        finally
-        {
-            if (t.isActive()) t.rollback();
-            em.close();
         }
+		catch (Exception e)
+        {
+			em.close();
+		}
+	}
+
+	@Override
+	public User getOne(String id, String email)
+	{
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.id = :id AND u.email = :email" );
+        query.setParameter("id", Long.parseLong(id));
+        query.setParameter("email", email);
+        try
+        {
+        	User account = (User) query.getSingleResult();
+        	em.close();
+        	return account;
+        }
+		catch (Exception e)
+        {
+			em.close();
+			return null;
+		}
 	}
 }
