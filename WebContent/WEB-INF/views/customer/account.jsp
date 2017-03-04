@@ -35,18 +35,8 @@
 					</tr>
 				</tbody>
 			</table>
-			
-			<div class="col-lg-12">
-				<select>
-					<option>text1</option>
-					<option>text2</option>
-					<option>text3</option>
-					<option>text4</option>
-					<option>text5</option>
-				</select>
-			</div>
-		    
-		    <a href="dashboard"><- Retour</a><br>
+
+		    <button type="button" class="btn btn-default" id="btnGoBack" onClick="window.location='dashboard'"><span class="glyphicon glyphicon-menu-left"></span>Retour</button>
 		</div>
 		
 	    <script src="../js/jquery.js"></script>

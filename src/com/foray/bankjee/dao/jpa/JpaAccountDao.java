@@ -93,11 +93,11 @@ public class JpaAccountDao implements AccountDao
             em.merge( account );
             t.commit();
             
-        } 
-        finally
+        }
+        catch(Exception e)
         {
-            if (t.isActive()) t.rollback();
-            em.close();
+        	System.out.println(e.getMessage());
+        	em.close();
         }
 	}
 }

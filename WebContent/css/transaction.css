@@ -1,0 +1,14 @@
+.accounts-list select {
+	padding: 10px;
+    font-size: 16px;
+    font-variant: small-caps;
+    width: 100%;
+}
+
+.accounts-list .input-group input {
+	text-align: end;
+}
+
+.accounts-list .accounts-list-title {
+	font-size: 18px;
+}

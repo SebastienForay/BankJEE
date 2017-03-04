@@ -25,4 +25,9 @@ public class DaoFactory
 	{
 	       return new JpaAdvisorDao(PersistenceManager.getEntityManagerFactory());
 	}
+	
+	public static TransactionDao getTransactionDao()
+	{
+		return new JpaTransactionDao(PersistenceManager.getEntityManagerFactory());
+	}
 }

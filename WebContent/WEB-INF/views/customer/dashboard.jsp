@@ -40,6 +40,8 @@
 				</c:forEach>
 				</tbody>
 			</table>
+			
+			<button type="button" class="btn btn-success" onClick="window.location='transaction'" style="float: right;">Effectuer un virement <span class="glyphicon glyphicon-log-out"></span></button>
 		</div>
 		
 		    		    
