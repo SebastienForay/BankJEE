@@ -5,10 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import com.foray.bankjee.dao.TransactionDao;
+import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.Customer;
 import com.foray.bankjee.db.Transaction;
+import com.foray.bankjee.db.User;
 
 public class JpaTransactionDao implements TransactionDao
 {
@@ -43,9 +46,24 @@ public class JpaTransactionDao implements TransactionDao
 	}
 
 	@Override
-	public List<Transaction> findAll(Customer customer)
+	public List<Transaction> findAll(Customer customer, Account account)
 	{
-		return null;
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery( "SELECT t FROM Transaction AS t WHERE t.customer = :customer AND t.debitAccount = :account" );
+        query.setParameter("customer", customer);
+        query.setParameter("account", account);
+        
+        try
+        {
+    		List<Transaction> transactions = (List<Transaction>) query.getResultList();
+        	em.close();
+    		return transactions;
+        }
+		catch (Exception e)
+        {
+			em.close();
+			return null;
+		}
 	}
 
 	@Override

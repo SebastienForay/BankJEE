@@ -16,7 +16,7 @@
 	
 		<%@ include file="/WEB-INF/includes/navbar.jsp"%>
 	
-		<div class="container">			
+		<div class="container">
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -33,6 +33,25 @@
 						<td>${ account.getCreationDate() }</td>
 						<td>${ account.getInterest() }</td>
 					</tr>
+				</tbody>
+			</table>
+			<h2>Vos virements</h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Commentaire</th>
+						<th>Montant</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${transactions}" var="t">
+						<tr>
+							<td>${ t.getDate() }</td>
+							<td>${ t.getComment() }</td>
+							<td>${ t.getAmount() }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 

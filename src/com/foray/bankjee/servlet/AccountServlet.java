@@ -1,6 +1,7 @@
 package com.foray.bankjee.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.foray.bankjee.dao.AccountDao;
+import com.foray.bankjee.dao.CustomerDao;
 import com.foray.bankjee.dao.DaoFactory;
+import com.foray.bankjee.dao.TransactionDao;
 import com.foray.bankjee.db.Account;
+import com.foray.bankjee.db.Customer;
+import com.foray.bankjee.db.Transaction;
 import com.foray.bankjee.db.User;
 
 /**
@@ -56,7 +61,13 @@ public class AccountServlet extends HttpServlet
 	        }
 	        else
 	        {
+	        	TransactionDao transactionDao = DaoFactory.getTransactionDao();
+	        	CustomerDao customerDao = DaoFactory.getCustomerDao();
+	        	Customer customer = customerDao.getOne(user);
+	        	List<Transaction> transactions = transactionDao.findAll(customer, account);
+	        	
 	        	request.setAttribute("account", account);
+	        	request.setAttribute("transactions", transactions);
 	        	request.getRequestDispatcher( VIEW ).forward( request, response );
         		return;
 	        }
