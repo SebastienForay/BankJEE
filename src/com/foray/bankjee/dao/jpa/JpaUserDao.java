@@ -1,5 +1,7 @@
 package com.foray.bankjee.dao.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -78,6 +80,24 @@ public class JpaUserDao implements UserDao
 	}
 	
 	@Override
+	public List<User> getAll()
+	{
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery( "SELECT u FROM User AS u" );
+        try
+        {
+    		List<User> users = (List<User>) query.getResultList();
+        	em.close();
+    		return users;
+        }
+		catch (Exception e)
+        {
+			em.close();
+			return null;
+		}
+	}
+	
+	@Override
 	public void update(User user)
 	{
 		EntityManager em = emf.createEntityManager();
@@ -89,11 +109,30 @@ public class JpaUserDao implements UserDao
             em.merge( user );
             t.commit();
             
-        } 
-        finally
-        {
-            if (t.isActive()) t.rollback();
-            em.close();
         }
+		catch (Exception e)
+        {
+			em.close();
+		}
+	}
+
+	@Override
+	public User getOne(String id, String email)
+	{
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.id = :id AND u.email = :email" );
+        query.setParameter("id", Long.parseLong(id));
+        query.setParameter("email", email);
+        try
+        {
+        	User account = (User) query.getSingleResult();
+        	em.close();
+        	return account;
+        }
+		catch (Exception e)
+        {
+			em.close();
+			return null;
+		}
 	}
 }

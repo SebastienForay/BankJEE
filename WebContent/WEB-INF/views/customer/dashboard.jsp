@@ -10,7 +10,7 @@
 		
 		<title>Crédit Auvence - Tableau de bord</title>
 		
-		<link rel="stylesheet" href="../../css/bootstrap.css">
+		<link rel="stylesheet" href="../css/bootstrap.css">
 	</head>
 	<body>
 	
@@ -20,9 +20,6 @@
 			
 			<h1>Mon tableau de bord</h1>
 			
-		    <p>Bonjour <%= (String) request.getAttribute("firstname") %> <%= (String) request.getAttribute("lastname") %></p>
-		    <p>Email : <%= (String) request.getAttribute("email") %></p>
-		    
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -43,12 +40,12 @@
 				</c:forEach>
 				</tbody>
 			</table>
-		    
-		    <a href="logout">Se déconnecter</a>
-		    
-		    <script src="../../js/jquery.js"></script>
-		    <script src="../../js/bootstrap.js"></script>
-	    
+			
+			<button type="button" class="btn btn-success" onClick="window.location='transaction'" style="float: right;">Effectuer un virement <span class="glyphicon glyphicon-log-out"></span></button>
 		</div>
+		
+		    		    
+	    <script src="../js/jquery.js"></script>
+	    <script src="../js/bootstrap.js"></script>
 	</body>
 </html>

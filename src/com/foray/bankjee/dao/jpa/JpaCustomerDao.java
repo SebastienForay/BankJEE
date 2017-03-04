@@ -3,8 +3,10 @@ package com.foray.bankjee.dao.jpa;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import com.foray.bankjee.db.Customer;
+import com.foray.bankjee.db.User;
 import com.foray.bankjee.dao.CustomerDao;
 
 public class JpaCustomerDao implements CustomerDao
@@ -59,5 +61,24 @@ public class JpaCustomerDao implements CustomerDao
             if (t.isActive()) t.rollback();
             em.close();
         }
+	}
+	
+	@Override
+	public Customer getOne(User user)
+	{
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery( "SELECT c FROM Customer AS c WHERE c.user = :user" );
+        query.setParameter("user", user);
+        try
+        {
+        	Customer customer = (Customer) query.getSingleResult();
+        	em.close();
+        	return customer;
+        }
+		catch (Exception e)
+        {
+			em.close();
+			return null;
+		}
 	}
 }

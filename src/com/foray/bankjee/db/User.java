@@ -23,6 +23,9 @@ public class User
     private int type;
 
     // Getter
+    public Long getId() {
+    	return this.id;
+    }
     public String getFirstname() {
     	return this.firstname;
     }

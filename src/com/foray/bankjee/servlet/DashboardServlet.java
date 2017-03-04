@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.foray.bankjee.dao.AccountDao;
 import com.foray.bankjee.dao.DaoFactory;
+import com.foray.bankjee.dao.UserDao;
 import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.User;
 import com.foray.bankjee.utils.UserType;
@@ -27,6 +28,7 @@ public class DashboardServlet extends HttpServlet
     public static final String ATT_SESSION_USER = "user";
     public static final String VIEW_CUSTOMER = "/WEB-INF/views/customer/dashboard.jsp";
     public static final String VIEW_ADVISOR = "/WEB-INF/views/advisor/dashboard.jsp";
+    public static final String VIEW_ADMIN = "/WEB-INF/views/admin/dashboard.jsp";
     
 
     @Override
@@ -65,6 +67,8 @@ public class DashboardServlet extends HttpServlet
         	else if(UserType.Convert(user) == UserType.ADMINISTRATOR)
         	{
         		
+            	request.getRequestDispatcher( VIEW_ADMIN ).forward( request, response );
+                return;
         	}
         }
     }

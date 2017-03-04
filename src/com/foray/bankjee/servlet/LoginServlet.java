@@ -58,12 +58,15 @@ public class LoginServlet extends HttpServlet
         user = userDao.findConnectable(user);
        	if(user == null)
        	{
-       		response.sendRedirect( request.getContextPath() + "/login" );
+        	request.setAttribute("errorMsg", "Mauvais nom d'utilisateur ou mot de passe");
+        	request.getRequestDispatcher( VIEW ).forward( request, response );
+        	return;
        	}
        	else
        	{
        		session.setAttribute( ATT_SESSION_USER, user );
             response.sendRedirect( request.getContextPath() + "/auth/dashboard" );
+            return;
        	}
     }
 }
