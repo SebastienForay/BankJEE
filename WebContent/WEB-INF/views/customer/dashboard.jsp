@@ -20,9 +20,6 @@
 			
 			<h1>Mon tableau de bord</h1>
 			
-		    <p>Bonjour <%= (String) request.getAttribute("firstname") %> <%= (String) request.getAttribute("lastname") %></p>
-		    <p>Email : <%= (String) request.getAttribute("email") %></p>
-		    
 			<table class="table table-striped">
 				<thead>
 					<tr>
