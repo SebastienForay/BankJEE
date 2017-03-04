@@ -29,12 +29,9 @@
 					</ul>
 				</div>
 			</div>
-
-		    <a href="logout">Se déconnecter</a>
-		    
-		    <script src="../js/jquery.js"></script>
-		    <script src="../js/bootstrap.js"></script>
-	    
 		</div>
+		
+	    <script src="../js/jquery.js"></script>
+	    <script src="../js/bootstrap.js"></script>
 	</body>
 </html>

@@ -36,20 +36,20 @@
 				</tbody>
 			</table>
 			
-			<select>
-				<option>text1</option>
-				<option>text2</option>
-				<option>text3</option>
-				<option>text4</option>
-				<option>text5</option>
-			</select>
+			<div class="col-lg-12">
+				<select>
+					<option>text1</option>
+					<option>text2</option>
+					<option>text3</option>
+					<option>text4</option>
+					<option>text5</option>
+				</select>
+			</div>
 		    
 		    <a href="dashboard"><- Retour</a><br>
-		    <a href="logout">Se déconnecter</a>
-		    
-		    <script src="../js/jquery.js"></script>
-		    <script src="../js/bootstrap.js"></script>
-	    
 		</div>
+		
+	    <script src="../js/jquery.js"></script>
+	    <script src="../js/bootstrap.js"></script>
 	</body>
 </html>
