@@ -10,6 +10,7 @@ public interface UserDao
 	abstract Long findIfExist(String mail);
 	abstract User findConnectable(User user);
 	abstract List<User> getAll();
+	abstract List<User> getAllByType(int type);
 	abstract void update(User user);
 	abstract User getOne(String id, String email);
 }
