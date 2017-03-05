@@ -49,7 +49,7 @@ public class JpaTransactionDao implements TransactionDao
 	public List<Transaction> findAll(Customer customer, Account account)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery( "SELECT t FROM Transaction AS t WHERE t.customer = :customer AND t.debitAccount = :account" );
+		Query query = em.createQuery( "SELECT t FROM Transaction AS t WHERE t.customer = :customer AND t.debitAccount = :account OR t.creditAccount = :account ORDER BY date DESC" );
         query.setParameter("customer", customer);
         query.setParameter("account", account);
         

@@ -102,16 +102,23 @@ public class TransactionServlet extends HttpServlet
 		    		CustomerDao customerDao = DaoFactory.getCustomerDao();
 		    		Customer customer = customerDao.getOne(user);
 		    		
-		    		Transaction transaction = new Transaction();
-		    			transaction.setAmount(amount);
-		    			transaction.setComment(transactionReason);
-		    			transaction.setDate(new Date());
-		    			transaction.setDebitAccount(debitAccount);
-		    			transaction.setCreditAccount(creditAccount);
-		    			transaction.setCustomer(customer);
-		    			
+		    		Transaction transactionDebit = new Transaction();
+			    		transactionDebit.setAmount(amount);
+			    		transactionDebit.setComment(transactionReason);
+			    		transactionDebit.setDate(new Date());
+			    		transactionDebit.setDebitAccount(debitAccount);
+			    		transactionDebit.setCreditAccount(creditAccount);
+			    		transactionDebit.setCustomer(customer);
+		    		Transaction transactionCredit = new Transaction();
+			    		transactionCredit.setAmount(0-amount);
+			    		transactionCredit.setComment(transactionReason);
+			    		transactionCredit.setDate(new Date());
+			    		transactionCredit.setDebitAccount(creditAccount);
+			    		transactionCredit.setCreditAccount(debitAccount);
+			    		transactionCredit.setCustomer(customer);
 		    		
-		    		transactionDao.add(transaction);
+			    	transactionDao.add(transactionDebit);
+		    		transactionDao.add(transactionCredit);
 		        	response.sendRedirect(request.getContextPath() + "/auth/dashboard");
 		        	return;
 	    		}
