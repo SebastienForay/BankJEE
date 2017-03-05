@@ -83,7 +83,7 @@ public class JpaUserDao implements UserDao
 	public List<User> getAll()
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery( "SELECT u FROM User AS u" );
+		Query query = em.createQuery( "SELECT u FROM User AS u ORDER BY u.type DESC" );
         try
         {
     		List<User> users = (List<User>) query.getResultList();
