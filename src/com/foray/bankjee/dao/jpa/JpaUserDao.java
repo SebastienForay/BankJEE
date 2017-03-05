@@ -98,6 +98,25 @@ public class JpaUserDao implements UserDao
 	}
 	
 	@Override
+	public List<User> getAllByType(int type)
+	{
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.type = :type" );
+        query.setParameter("type", type);
+        try
+        {
+    		List<User> users = (List<User>) query.getResultList();
+        	em.close();
+    		return users;
+        }
+		catch (Exception e)
+        {
+			em.close();
+			return null;
+		}
+	}
+	
+	@Override
 	public void update(User user)
 	{
 		EntityManager em = emf.createEntityManager();

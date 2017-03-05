@@ -34,6 +34,9 @@ public class Transaction
     private Account creditAccount;
     
     // Getter
+    public Long getId() {
+    	return this.id;
+    }
     public Double getAmount() {
     	return this.amount;
     }
@@ -49,7 +52,7 @@ public class Transaction
     public Account getDebitAccount() {
     	return this.debitAccount;
     }
-    public Account getCreditAccout() {
+    public Account getCreditAccount() {
     	return this.creditAccount;
     }
     

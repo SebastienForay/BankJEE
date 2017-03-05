@@ -16,7 +16,8 @@
 	
 		<%@ include file="/WEB-INF/includes/navbar.jsp"%>
 	
-		<div class="container">			
+		<div class="container">
+			<h3>Récapitulatif de votre compte</h3>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -29,10 +30,55 @@
 				<tbody>
 					<tr>
 						<th scope="row">${ account.getLabel() }</a></th>
-						<td>${ account.getBalance() }</td>
+						<td>${ account.getBalance() } <span class ="glyphicon glyphicon-eur" style="font-size: 11px;"></span></td>
 						<td>${ account.getCreationDate() }</td>
-						<td>${ account.getInterest() }</td>
+						<td>${ account.getInterest() } %</td>
 					</tr>
+				</tbody>
+			</table>
+			<br><br>
+			<h3>Vos virements</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Commentaire</th>
+						<th>Crédit</th>
+						<th>Débit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${transactions}" var="t">
+						<c:if test="${ t.getAmount() < 0 && t.getCreditAccount().getId() == account.getId() || t.getAmount() > 0 && t.getCreditAccount().getId() == account.getId() }">
+							<c:set var="idTransactionHeader" value="heading${ t.getId() }"/>
+							<c:set var="idTransactionCollapse" value="collapse${ t.getId() }"/>
+							<c:set var="transactionCollapseHref" value="#collapse${ t.getId() }"/>
+							<tr>
+								<td>
+									<div id="accordion" role="tablist" aria-multiselectable="true">
+										<div class="card">
+											<div class="card-header" role="tab" id="${ idTransactionHeader }">
+												<h5 class="mb-0">
+													<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="${ transactionCollapseHref }" aria-expanded="false" aria-controls="${ idTransactionCollapse }">									
+														<span class="glyphicon glyphicon-chevron-down"></span> ${ t.getDate() }
+													</a>
+												</h5>
+											</div>
+										</div>
+										
+										<div id="${ idTransactionCollapse }" class="collapse" role="tabpanel" aria-labelledby="${ idTransactionHeader }">
+											<div class="card-block">
+												Compte bénéficiaire : ${ t.getAmount() > 0 ? t.getCreditAccount().getLabel() : t.getDebitAccount().getLabel() }
+											</div>
+										</div>
+									</div>
+								</td>
+								<td>${ t.getComment() }</td>
+								<td>${ t.getAmount() > 0 ? t.getAmount() : '' }</td>
+								<td>${ t.getAmount() < 0 ? t.getAmount() : '' }</td>
+							</tr>
+						</c:if>
+					</c:forEach>
 				</tbody>
 			</table>
 

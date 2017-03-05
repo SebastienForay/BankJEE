@@ -66,6 +66,7 @@ public class RegisterServlet extends HttpServlet
 	    	user.setPassword( email + password );
 	    	user.setFirstname( firstname );
 	    	user.setLastname( lastname );
+	    	user.setType(0);
 
 	    	UserDao userDao = DaoFactory.getUserDao();
 	    	Long ifExist = userDao.findIfExist(email);
