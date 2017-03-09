@@ -47,14 +47,31 @@
 					<c:if test="${!empty customers}">
 						<tr>
 							<table class="table table-striped">
-								<thead></thead>
 								<tbody>
-									<p>Clients associés :</p>
+									<h3>Clients associés :</h3>
 									<c:forEach items="${customers}" var="customer">
 										<tr>
 											<td>${ customer.getFirstname() }</td>
 											<td>${ customer.getLastname() }</td>
 											<td>${ customer.getEmail() }</td>
+											<td><button type="button" class="btn btn-danger" id="btnAdvDetails" style="float: right;" onClick="window.location='advisors?id=${ advisor.getId() }&unAssignUser=${ customer.getId() }'"><span class="glyphicon glyphicon-remove"></span> Retirer</button></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</tr>
+					</c:if>
+					<c:if test="${!empty customersNotAssigned}">
+						<tr>
+							<table class="table table-striped">
+								<tbody>
+									<h3>Clients non associés :</h3>
+									<c:forEach items="${customersNotAssigned}" var="customerNA">
+										<tr>
+											<td>${ customerNA.getFirstname() }</td>
+											<td>${ customerNA.getLastname() }</td>
+											<td>${ customerNA.getEmail() }</td>
+											<td><button type="button" class="btn btn-success" id="btnAdvDetails" style="float: right;" onClick="window.location='advisors?id=${ advisor.getId() }&assignUser=${ customerNA.getId() }'"><span class="glyphicon glyphicon-ok"></span> Assigner</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>
