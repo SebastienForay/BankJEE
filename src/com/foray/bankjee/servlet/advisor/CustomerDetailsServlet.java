@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.foray.bankjee.dao.AccountDao;
 import com.foray.bankjee.dao.AdvisorDao;
 import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.dao.UserDao;
+import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.Advisor;
 import com.foray.bankjee.db.User;
 import com.foray.bankjee.utils.UserType;
@@ -50,24 +52,17 @@ public class CustomerDetailsServlet extends HttpServlet
         	
         	if(userId != null)
         	{
-            	AdvisorDao advisorDao = DaoFactory.getAdvisorDao();
             	UserDao userDao = DaoFactory.getUserDao();
-            	
-            	Advisor advisor = advisorDao.get(String.valueOf(user.getId()));
-            	User advisorAsUser = userDao.getOneFromAdvisorId(String.valueOf(advisor.getId()));
-            	if(UserType.Convert(advisorAsUser) == UserType.ADVISOR)
-            	{
-                	User customer = userDao.getOne(userId);
+            	AccountDao accountDao = DaoFactory.getAccountDao();
+            	User customer = userDao.getOne(userId);
 
-                	request.setAttribute("customer", customer);
-                	request.getRequestDispatcher( VIEW ).forward( request, response );
-        	        return;
-            	}
-            	else
-            	{
-        	    	request.getRequestDispatcher( VIEW ).forward( request, response );
-        	        return;
-            	}
+            	List<Account> accounts = accountDao.findAll(customer);
+
+            	request.setAttribute("customer", customer);
+            	request.setAttribute("accounts", accounts);
+            	request.getRequestDispatcher( VIEW ).forward( request, response );
+    	        return;
+            	
         	}
         	else
         	{
