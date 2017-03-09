@@ -56,9 +56,8 @@ public class JpaCustomerDao implements CustomerDao
             t.commit();
             
         } 
-        finally
+        catch(Exception e)
         {
-            if (t.isActive()) t.rollback();
             em.close();
         }
 	}
