@@ -14,6 +14,7 @@ public interface UserDao
 	abstract List<User> getAll();
 	abstract List<User> getAllByType(int type);
 	abstract void update(User user);
+	abstract User getOne(String id);
 	abstract User getOne(String id, String email);
 	abstract User getOneFromAdvisorId(String id);
 }

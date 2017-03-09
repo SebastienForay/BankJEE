@@ -34,7 +34,7 @@
 							<td>${ user.getFirstname() }</td>
 							<td>${ user.getLastname() }</td>
 							<td>${ user.getEmail() }</td>
-							<td><button type="button" class="btn btn-default" id="btnAdvDetails" style="float: right;" onClick="window.location='details?userId=${ user.getId() }'"><span class="glyphicon glyphicon-info-sign"></span> Détails</button></td>
+							<td><button type="button" class="btn btn-default" id="btnAdvDetails" style="float: right;" onClick="window.location='customers/details?userId=${ user.getId() }'"><span class="glyphicon glyphicon-info-sign"></span> Détails</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
