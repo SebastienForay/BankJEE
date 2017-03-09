@@ -81,7 +81,7 @@ public class TransactionServlet extends HttpServlet
     		   debitAccountId == creditAccountId ||
     		   amount <= 0.0)
 	    	{
-	    		doGet(request, response);
+	        	request.getRequestDispatcher( VIEW ).forward( request, response );
 	    		return;
 	    	}
 	    	else
@@ -120,6 +120,11 @@ public class TransactionServlet extends HttpServlet
 			    	transactionDao.add(transactionDebit);
 		    		transactionDao.add(transactionCredit);
 		        	response.sendRedirect(request.getContextPath() + "/auth/dashboard");
+		        	return;
+	    		}
+	    		else
+	    		{
+		        	request.getRequestDispatcher( VIEW ).forward( request, response );
 		        	return;
 	    		}
 	    	}
