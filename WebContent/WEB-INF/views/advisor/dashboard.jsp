@@ -39,8 +39,6 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			
-			<button type="button" class="btn btn-default" id="btnGoBack" onClick="window.location='../dashboard'"><span class="glyphicon glyphicon-menu-left"></span> Retour</button>
 		</div>
 		    
 	    <script src="../../js/jquery.js"></script>

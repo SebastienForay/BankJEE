@@ -104,6 +104,7 @@ public class CustomerDetailsServlet extends HttpServlet
             	List<Account> accounts = accountDao.findAll(userUpdating);
 
             	request.setAttribute("accounts", accounts);
+            	request.setAttribute("customer", userUpdating);
         	}
         	else
         	{
