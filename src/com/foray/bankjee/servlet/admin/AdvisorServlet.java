@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.foray.bankjee.dao.AdvisorDao;
 import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.dao.UserDao;
+import com.foray.bankjee.db.Advisor;
 import com.foray.bankjee.db.User;
 
 /**
@@ -43,11 +45,38 @@ public class AdvisorServlet extends HttpServlet
         }
         else
         {
-	    	UserDao userDao = DaoFactory.getUserDao();
-	    	List<User> users = userDao.getAllByType(1);
-	    	request.setAttribute("users", users);
-	    	request.getRequestDispatcher( VIEW ).forward( request, response );
-	        return;
+        	String advisorId = request.getParameter("id");
+        	
+        	if(advisorId != null)
+        	{
+            	AdvisorDao advisorDao = DaoFactory.getAdvisorDao();
+            	UserDao userDao = DaoFactory.getUserDao();
+            	
+            	Advisor advisor = advisorDao.get(String.valueOf(advisorId));
+            	User advisorAsUser = userDao.getOneFromAdvisorId(String.valueOf(advisorId));
+            	if(advisorAsUser.getType() == 1)
+            	{
+                	List<User> advisorCustomersAsUser = advisorDao.getAllCustomersForAdvisor(advisor);
+
+                	request.setAttribute("advisor", advisorAsUser);
+                	request.setAttribute("customers", advisorCustomersAsUser);
+                	request.getRequestDispatcher( VIEW ).forward( request, response );
+        	        return;
+            	}
+            	else
+            	{
+        	    	request.getRequestDispatcher( VIEW ).forward( request, response );
+        	        return;
+            	}
+        	}
+        	else
+        	{
+            	UserDao userDao = DaoFactory.getUserDao();
+    	    	List<User> users = userDao.getAllByType(1);
+    	    	request.setAttribute("users", users);
+    	    	request.getRequestDispatcher( VIEW ).forward( request, response );
+    	        return;
+        	}
         }
 	}
 
@@ -64,7 +93,7 @@ public class AdvisorServlet extends HttpServlet
         }
         else
         {
-    		doGet(request, response);
+        	doGet(request, response);
 	        return;
         }
 	}

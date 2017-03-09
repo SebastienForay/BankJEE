@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,10 +26,14 @@ public class Customer
     @OneToOne
     @JoinColumn(name="checkingAccount_fk")
     private Account checkingAccount;
-    
+
     @OneToOne
     @JoinColumn(name="savingAccount_fk")
     private Account savingAccount;
+
+    @OneToOne
+    @JoinColumn(name="advisor_fk")
+    private Advisor advisor;
     
     // Getter
     public int getShares() {
@@ -43,6 +48,9 @@ public class Customer
     public Account getsavingAccount() {
     	return this.savingAccount;
     }
+    public Advisor getAdvisor() {
+    	return this.advisor;
+    }
     
     // Setter
     public void setShares(int shares) {
@@ -56,5 +64,8 @@ public class Customer
     }
     public void setSavingAccount(Account account) {
     	this.savingAccount = account;
+    }
+    public void setAdvisor(Advisor advisor) {
+    	this.advisor = advisor;
     }
 }

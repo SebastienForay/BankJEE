@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import com.foray.bankjee.db.Advisor;
 import com.foray.bankjee.db.User;
 import com.foray.bankjee.dao.UserDao;
 
@@ -142,6 +143,25 @@ public class JpaUserDao implements UserDao
 		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.id = :id AND u.email = :email" );
         query.setParameter("id", Long.parseLong(id));
         query.setParameter("email", email);
+        try
+        {
+        	User account = (User) query.getSingleResult();
+        	em.close();
+        	return account;
+        }
+		catch (Exception e)
+        {
+			em.close();
+			return null;
+		}
+	}
+
+	@Override
+	public User getOneFromAdvisorId(String id)
+	{
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery( "SELECT u FROM User AS u WHERE u.id = :id" );
+        query.setParameter("id", Long.parseLong(id));
         try
         {
         	User account = (User) query.getSingleResult();

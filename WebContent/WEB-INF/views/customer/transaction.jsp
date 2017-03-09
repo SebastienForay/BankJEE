@@ -48,12 +48,15 @@
 							</select>
 							
 							<br><br>
-							
-							<div class="input-group">
-								<input type="text" id="transactionAmount" name="transactionAmount" class="form-control" placeholder="0.0" aria-describedby="glyph-addon">
-								<span class="input-group-addon" id="glyph-addon"><span class="glyphicon glyphicon-eur"></span></span>
+							<div class="form-group <%= request.getAttribute("errorMsg") != null ? "has-error" : "" %>">
+								<div class="input-group">
+									<input type="text" id="transactionAmount" name="transactionAmount" class="form-control" placeholder="0.0" aria-describedby="glyph-addon">
+									<span class="input-group-addon" id="glyph-addon"><span class="glyphicon glyphicon-eur"></span></span>
+								</div>
 							</div>
+							<p style="color: #a94442;"><%= request.getAttribute("errorMsg") != null ? (String) request.getAttribute("errorMsg") : "" %></p>
 							<br>
+							
 							<div class="input-group">
 								<input type="text" id="transactionReason" name="transactionReason" class="form-control" placeholder="Motif" aria-describedby="glyph-addon">
 								<span class="input-group-addon" id="glyph-addon"><span class="glyphicon glyphicon-info-sign"></span></span>

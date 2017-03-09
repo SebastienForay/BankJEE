@@ -124,6 +124,11 @@ public class TransactionServlet extends HttpServlet
 	    		}
 	    		else
 	    		{
+	    			request.setAttribute("errorMsg", "Montant non disponible");
+	    			
+	            	List<Account> accounts = accountDao.findAll(user);
+	            	request.setAttribute("accounts", accounts);
+	            	
 		        	request.getRequestDispatcher( VIEW ).forward( request, response );
 		        	return;
 	    		}

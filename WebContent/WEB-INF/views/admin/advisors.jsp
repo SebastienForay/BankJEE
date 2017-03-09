@@ -38,6 +38,29 @@
 						<td><button type="button" class="btn btn-default" id="btnAdvDetails" style="float: right;" onClick="window.location='advisors?id=${ user.getId() }'"><span class="glyphicon glyphicon-info-sign"></span> Détails</button></td>
 					</tr>
 				</c:forEach>
+					<tr>
+						<td>${ advisor.getFirstname() }</td>
+						<td>${ advisor.getLastname() }</td>
+						<td>${ advisor.getEmail() }</td>
+						<td></td>
+					</tr>
+					<c:if test="${!empty customers}">
+						<tr>
+							<table class="table table-striped">
+								<thead></thead>
+								<tbody>
+									<p>Clients associés :</p>
+									<c:forEach items="${customers}" var="customer">
+										<tr>
+											<td>${ customer.getFirstname() }</td>
+											<td>${ customer.getLastname() }</td>
+											<td>${ customer.getEmail() }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</tr>
+					</c:if>
 				</tbody>
 			</table>
 			
