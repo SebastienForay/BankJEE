@@ -24,7 +24,7 @@
 			<div class="col-md-12">
 				<div class="bs-glyphicons col-md-4">
 					<ul class="bs-glyphicons-list">
-						<li><a href="admin/users"><div class="customer"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Gérer les clients</div></a></li>
+						<li><a href="admin/users"><div class="customer"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Gérer les utilisateurs</div></a></li>
 						<li><a href="admin/advisors"><div class="advisor"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Gérer les conseillers</div></a></li>
 					</ul>
 				</div>

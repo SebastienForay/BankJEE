@@ -13,19 +13,20 @@ import javax.servlet.http.HttpSession;
 import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.dao.UserDao;
 import com.foray.bankjee.db.User;
+import com.foray.bankjee.utils.UserType;
 
 /**
  * Servlet implementation class UserServlet
  */
 @WebServlet("/auth/admin/users")
-public class UserServlet extends HttpServlet
+public class ListUserServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
     public static final String ATT_SESSION_USER = "user";
     public static final String VIEW = "/WEB-INF/views/admin/users.jsp";
     
-	public UserServlet()
+	public ListUserServlet()
 	{
         super();
     }
@@ -36,7 +37,7 @@ public class UserServlet extends HttpServlet
         HttpSession session = request.getSession();
     	User user = (User) session.getAttribute( ATT_SESSION_USER );
     	
-        if (user == null || user.getType() != 2)
+        if (user == null || UserType.Convert(user) != UserType.ADMINISTRATOR)
         {
         	response.sendRedirect(request.getContextPath() + "/login");
             return;
@@ -61,7 +62,7 @@ public class UserServlet extends HttpServlet
 		HttpSession session = request.getSession();
     	User user = (User) session.getAttribute( ATT_SESSION_USER );
     	
-        if (user == null || user.getType() != 2)
+        if (user == null || UserType.Convert(user) != UserType.ADMINISTRATOR)
         {
         	response.sendRedirect(request.getContextPath() + "/login");
             return;

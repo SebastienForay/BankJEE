@@ -2,7 +2,9 @@ package com.foray.bankjee.dao;
 
 import java.util.List;
 
+import com.foray.bankjee.db.Advisor;
 import com.foray.bankjee.db.User;
+import com.foray.bankjee.utils.UserType;
 
 public interface UserDao
 {
@@ -12,5 +14,7 @@ public interface UserDao
 	abstract List<User> getAll();
 	abstract List<User> getAllByType(int type);
 	abstract void update(User user);
+	abstract User getOne(String id);
 	abstract User getOne(String id, String email);
+	abstract User getOneFromAdvisorId(String id);
 }
