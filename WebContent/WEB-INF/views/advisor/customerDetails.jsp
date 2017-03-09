@@ -24,7 +24,6 @@
 							<th>Prénom</th>
 							<th>Nom</th>
 							<th>Email</th>
-							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -42,13 +41,13 @@
 						<p>${ account.getLabel() }</p>
 						<p>Montant actuel : ${ account.getBalance() }</p>
 						
-						<input type="hidden" name="userId" value="${ customer.getId() }">
-						<input type="hidden" name="userEmail" value="${ customer.getEmail() }">
-						<input type="hidden" name="accountId" value="${ account.getId() }">
+						<input type="hidden" name="userId" id="userId" value="${ customer.getId() }">
+						<input type="hidden" name="userEmail" id="userEmail" value="${ customer.getEmail() }">
+						<input type="hidden" name="accountId" id="accountId" value="${ account.getId() }">
 						<div class="form-group <%= request.getAttribute("errorMsg") != null ? "has-error" : "" %>">
 							<div class="input-group">
 								<span id="sizing-addon2" class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-euro"></span></span>
-			                	<input type="text" name="newBalance" class="form-control" placeholder="0.0" aria-describedby="sizing-addon2" required>
+			                	<input type="text" name="newBalance" id="newBalance" class="form-control" placeholder="0.0" aria-describedby="sizing-addon2" required>
 							</div>
 						</div>
 						<p style="color: #a94442;"><%= request.getAttribute("errorMsg") != null ? (String) request.getAttribute("errorMsg") : "" %></p>

@@ -85,8 +85,33 @@ public class CustomerDetailsServlet extends HttpServlet
         }
         else
         {
-    		doGet(request, response);
-	        return;
+        	String userId = (String) request.getParameter("userId");
+        	String userEmail = (String) request.getParameter("userEmail");
+        	String accountId = (String) request.getParameter("accountId");
+        	String newBalance = (String) request.getParameter("newBalance");
+        	
+        	if(!userId.isEmpty() && !userEmail.isEmpty() && !accountId.isEmpty())
+        	{
+        		AccountDao accountDao = DaoFactory.getAccountDao();
+        		UserDao userDao = DaoFactory.getUserDao();
+        		
+        		User userUpdating = userDao.getOne(userId, userEmail);
+        		Account account = accountDao.getOne(userUpdating, Long.parseLong(accountId));
+        		
+        		account.setBalance(account.getBalance() + Double.valueOf(newBalance));
+        		accountDao.update(account);
+        		
+            	List<Account> accounts = accountDao.findAll(userUpdating);
+
+            	request.setAttribute("accounts", accounts);
+        	}
+        	else
+        	{
+        		request.setAttribute("errorMsg", "Erreur interne");
+        	}
+        	
+        	request.getRequestDispatcher( VIEW ).forward( request, response );
+    		return;
         }
 	}
 
