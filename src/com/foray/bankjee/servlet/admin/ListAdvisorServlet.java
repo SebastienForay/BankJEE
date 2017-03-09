@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.foray.bankjee.dao.AdvisorDao;
+import com.foray.bankjee.dao.CustomerDao;
 import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.dao.UserDao;
 import com.foray.bankjee.db.Advisor;
+import com.foray.bankjee.db.Customer;
 import com.foray.bankjee.db.User;
 import com.foray.bankjee.utils.UserType;
 
@@ -47,26 +49,50 @@ public class ListAdvisorServlet extends HttpServlet
         else
         {
         	String advisorId = request.getParameter("id");
+        	String assignUserId = request.getParameter("assignUser");
+        	String unAssignUserId = request.getParameter("unAssignUser");
         	
         	if(advisorId != null)
         	{
             	AdvisorDao advisorDao = DaoFactory.getAdvisorDao();
             	UserDao userDao = DaoFactory.getUserDao();
             	
-            	Advisor advisor = advisorDao.get(String.valueOf(advisorId));
-            	User advisorAsUser = userDao.getOneFromAdvisorId(String.valueOf(advisorId));
-            	if(UserType.Convert(advisorAsUser) == UserType.ADVISOR)
+            	Advisor advisor = advisorDao.get(advisorId);
+            	User advisorAsUser = advisor.getUser();
+            	
+            	if(assignUserId != null)
             	{
-                	List<User> advisorCustomersAsUser = advisorDao.getAllCustomersForAdvisor(advisor);
+            		CustomerDao customerDao = DaoFactory.getCustomerDao();
+            		
+            		User userToAssign = userDao.getOne(assignUserId);
+            		Customer customerToAssign = customerDao.getOne(userToAssign);
+            		customerToAssign.setAdvisor(advisor);
+            		customerDao.update(customerToAssign);
+            	}
+            	if(unAssignUserId != null)
+            	{
+            		CustomerDao customerDao = DaoFactory.getCustomerDao();
+            		
+            		User userToAssign = userDao.getOne(unAssignUserId);
+            		Customer customerToAssign = customerDao.getOne(userToAssign);
+            		customerToAssign.setAdvisor(null);
+            		customerDao.update(customerToAssign);
+            	}
+            	
+            	if(advisorAsUser != null && UserType.Convert(advisorAsUser) == UserType.ADVISOR)
+            	{
+            		List<User> advisorCustomersAsUser = advisorDao.getAllCustomersForAdvisor(advisor);
+            		List<User> customersNotAssigned = advisorDao.getAllCustomersNotForAdvisor(advisor);
 
                 	request.setAttribute("advisor", advisorAsUser);
                 	request.setAttribute("customers", advisorCustomersAsUser);
+                	request.setAttribute("customersNotAssigned", customersNotAssigned);
                 	request.getRequestDispatcher( VIEW ).forward( request, response );
         	        return;
             	}
             	else
             	{
-        	    	request.getRequestDispatcher( VIEW ).forward( request, response );
+                	response.sendRedirect(request.getContextPath() + "/auth/admin/advisors");
         	        return;
             	}
         	}

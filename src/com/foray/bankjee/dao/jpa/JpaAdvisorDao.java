@@ -102,4 +102,23 @@ public class JpaAdvisorDao implements AdvisorDao
 			return null;
 		}
 	}
+	
+	@Override
+	public List<User> getAllCustomersNotForAdvisor(Advisor advisor)
+	{
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("SELECT u FROM User AS u WHERE u IN (SELECT c.user FROM Customer AS c WHERE c.advisor != :advisor OR c.advisor IS NULL)");
+		query.setParameter("advisor", advisor);
+        try
+        {
+    		List<User> users = (List<User>) query.getResultList();
+        	em.close();
+    		return users;
+        }
+		catch (Exception e)
+        {
+			em.close();
+			return null;
+		}
+	}
 }

@@ -11,4 +11,5 @@ public interface AdvisorDao
 	abstract Advisor get(String id);
 	abstract void update(Advisor advisor);
 	abstract List<User> getAllCustomersForAdvisor(Advisor advisor);
+	abstract List<User> getAllCustomersNotForAdvisor(Advisor advisor);
 }
