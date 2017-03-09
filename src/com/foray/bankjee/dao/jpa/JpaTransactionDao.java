@@ -11,7 +11,6 @@ import com.foray.bankjee.dao.TransactionDao;
 import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.Customer;
 import com.foray.bankjee.db.Transaction;
-import com.foray.bankjee.db.User;
 
 public class JpaTransactionDao implements TransactionDao
 {

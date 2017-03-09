@@ -15,19 +15,20 @@ import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.dao.UserDao;
 import com.foray.bankjee.db.Advisor;
 import com.foray.bankjee.db.User;
+import com.foray.bankjee.utils.UserType;
 
 /**
  * Servlet implementation class AdvisorServlet
  */
 @WebServlet("/auth/admin/advisors")
-public class AdvisorServlet extends HttpServlet
+public class ListAdvisorServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
     public static final String ATT_SESSION_USER = "user";
     public static final String VIEW = "/WEB-INF/views/admin/advisors.jsp";
     
-	public AdvisorServlet()
+	public ListAdvisorServlet()
 	{
         super();
     }
@@ -38,7 +39,7 @@ public class AdvisorServlet extends HttpServlet
         HttpSession session = request.getSession();
     	User user = (User) session.getAttribute( ATT_SESSION_USER );
     	
-        if (user == null || user.getType() != 2)
+        if (user == null || UserType.Convert(user) != UserType.ADMINISTRATOR)
         {
         	response.sendRedirect(request.getContextPath() + "/login");
             return;
@@ -54,7 +55,7 @@ public class AdvisorServlet extends HttpServlet
             	
             	Advisor advisor = advisorDao.get(String.valueOf(advisorId));
             	User advisorAsUser = userDao.getOneFromAdvisorId(String.valueOf(advisorId));
-            	if(advisorAsUser.getType() == 1)
+            	if(UserType.Convert(advisorAsUser) == UserType.ADVISOR)
             	{
                 	List<User> advisorCustomersAsUser = advisorDao.getAllCustomersForAdvisor(advisor);
 
@@ -86,7 +87,7 @@ public class AdvisorServlet extends HttpServlet
 		HttpSession session = request.getSession();
     	User user = (User) session.getAttribute( ATT_SESSION_USER );
     	
-        if (user == null || user.getType() != 2)
+        if (user == null || UserType.Convert(user) != UserType.ADMINISTRATOR)
         {
         	response.sendRedirect(request.getContextPath() + "/login");
             return;

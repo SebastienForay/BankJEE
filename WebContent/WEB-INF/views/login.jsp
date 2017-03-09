@@ -26,13 +26,13 @@
 	            	<div class="form-group <%= request.getAttribute("errorMsg") != null ? "has-error" : "" %>">
 						<div class="input-group">
 							<span id="sizing-addon2" class="input-group-addon" id="basic-addon1">@</span>
-		                	<input type="email" id="email" name="email" class="form-control" placeholder="Identifiant" value="sebastien.foray@ynov.com" aria-describedby="sizing-addon2" required autofocus>
+		                	<input type="email" id="email" name="email" class="form-control" placeholder="Identifiant" aria-describedby="sizing-addon2" required autofocus>
 						</div>
 					</div>
 	            	<div class="form-group <%= request.getAttribute("errorMsg") != null ? "has-error" : "" %>">
 						<div class="input-group">
 							<span id="sizing-addon2" class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-lock"></span></span>
-		                	<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" value="azerty" aria-describedby="sizing-addon2" required>
+		                	<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon2" required>
 						</div>
 					</div>
 					<p style="color: #a94442;"><%= request.getAttribute("errorMsg") != null ? (String) request.getAttribute("errorMsg") : "" %></p>

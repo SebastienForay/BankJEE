@@ -60,13 +60,11 @@ public class DashboardServlet extends HttpServlet
         	}
         	else if(UserType.Convert(user) == UserType.ADVISOR)
         	{
-
-            	request.getRequestDispatcher( VIEW_ADVISOR ).forward( request, response );
+        		response.sendRedirect(request.getContextPath() + "/auth/advisor/customers");
                 return;
         	}
         	else if(UserType.Convert(user) == UserType.ADMINISTRATOR)
         	{
-        		
             	request.getRequestDispatcher( VIEW_ADMIN ).forward( request, response );
                 return;
         	}

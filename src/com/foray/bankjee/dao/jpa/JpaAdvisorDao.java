@@ -88,7 +88,7 @@ public class JpaAdvisorDao implements AdvisorDao
 	public List<User> getAllCustomersForAdvisor(Advisor advisor)
 	{
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("SELECT u FROM User AS u WHERE u.id = (SELECT c.user FROM Customer AS c WHERE c.advisor = :advisor)");
+		Query query = em.createQuery("SELECT u FROM User AS u WHERE u IN (SELECT c.user FROM Customer AS c WHERE c.advisor = :advisor)");
 		query.setParameter("advisor", advisor);
         try
         {

@@ -7,7 +7,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import com.foray.bankjee.db.Advisor;
 import com.foray.bankjee.db.User;
 import com.foray.bankjee.dao.UserDao;
 

@@ -10,7 +10,7 @@
 		
 		<title>Crédit Auvence - Tableau de bord</title>
 		
-		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../../css/bootstrap.css">
 	</head>
 	<body>
 	
@@ -19,13 +19,31 @@
 		<div class="container">
 			
 			<h1>Mes clients</h1>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${customers}" var="user">
+						<tr>
+							<td>${ user.getFirstname() }</td>
+							<td>${ user.getLastname() }</td>
+							<td>${ user.getEmail() }</td>
+							<td><button type="button" class="btn btn-default" id="btnAdvDetails" style="float: right;" onClick="window.location='details?userId=${ user.getId() }'"><span class="glyphicon glyphicon-info-sign"></span> Détails</button></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 			
-		    
-		    <a href="logout">Se déconnecter</a>
-		    
-		    <script src="../js/jquery.js"></script>
-		    <script src="../js/bootstrap.js"></script>
-	    
+			<button type="button" class="btn btn-default" id="btnGoBack" onClick="window.location='../dashboard'"><span class="glyphicon glyphicon-menu-left"></span> Retour</button>
 		</div>
+		    
+	    <script src="../../js/jquery.js"></script>
+	    <script src="../../js/bootstrap.js"></script>
 	</body>
 </html>

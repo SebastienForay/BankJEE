@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.foray.bankjee.db.Advisor;
 import com.foray.bankjee.db.User;
+import com.foray.bankjee.utils.UserType;
 
 public interface UserDao
 {

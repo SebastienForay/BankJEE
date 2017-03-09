@@ -1,7 +1,6 @@
 package com.foray.bankjee.servlet.admin;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,15 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.foray.bankjee.dao.AccountDao;
 import com.foray.bankjee.dao.AdvisorDao;
-import com.foray.bankjee.dao.CustomerDao;
 import com.foray.bankjee.dao.DaoFactory;
 import com.foray.bankjee.dao.UserDao;
-import com.foray.bankjee.db.Account;
 import com.foray.bankjee.db.Advisor;
-import com.foray.bankjee.db.Customer;
 import com.foray.bankjee.db.User;
+import com.foray.bankjee.utils.UserType;
 
 /**
  * Servlet implementation class CreateAdvisorServlet
@@ -53,7 +49,7 @@ public class CreateAdvisorServlet extends HttpServlet
         HttpSession session = request.getSession();
     	User user = (User) session.getAttribute( ATT_SESSION_USER );
     	
-        if (user == null || user.getType() != 2)
+        if (user == null || UserType.Convert(user) != UserType.ADMINISTRATOR)
         {
         	response.sendRedirect(request.getContextPath() + LOGIN);
             return;
@@ -74,7 +70,7 @@ public class CreateAdvisorServlet extends HttpServlet
 		HttpSession session = request.getSession();
     	User user = (User) session.getAttribute( ATT_SESSION_USER );
     	
-        if (user == null || user.getType() != 2)
+        if (user == null || UserType.Convert(user) != UserType.ADMINISTRATOR)
         {
         	response.sendRedirect(request.getContextPath() + LOGIN);
             return;
